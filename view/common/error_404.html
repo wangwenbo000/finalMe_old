@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Not Found - ThinkJS</title>
+<style>
+html{
+  background-color: #f8d300;
+}
+  body{
+    text-align: center;
+  }
+  h1{
+    font-size: 4rem;
+  }
+  .error-msg{
+    border: 1px solid #A52A2A;
+    display: inline-block;
+    padding: 10px;
+  }
+</style>
+</head>
+<body>
+<h1>404</h1>
+<h6>ErrMsg:</h6>
+<div class="error-msg"><pre><%if(http.error){%><%=http.error.message%><%}%></pre></div>
+</body>
+</html>

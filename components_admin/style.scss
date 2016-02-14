@@ -1,0 +1,71 @@
+@import "./bootstrap/scss/bootstrap.scss";
+
+.container {
+  margin-top: 56px;
+  min-width: 1200px;
+  padding: 10px;
+  background: #fff;
+  border:1px solid #eaeaea;
+}
+
+//过渡样式
+.fade-transition {
+  transition: opacity .4s ease;
+}
+
+.fade-enter, .fade-leave {
+  opacity: 0;
+}
+
+//翻页样式
+#pagination {
+  height: 34px;
+  ul{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+.pagination-info,
+.pagination-go,
+#pagination
+{
+  vertical-align:middle;
+  display: inline-block;
+}
+.pagination-info{
+  padding: 0 10px;
+}
+.pagination-go{
+  .ipt{
+    width: 40px;
+    display: inline-block;
+    margin: 0 10px;
+    height: 34px;
+  }
+  a{
+    vertical-align: bottom;
+  }
+}
+
+//文章侧边栏样式
+input[name="title"]{
+  font-size: 2rem;
+}
+#datetimepicker{
+  border: none;
+}
+
+//侧边栏导航样式
+.sliderBar{
+  margin-bottom:6px;
+  a{
+    font-size: 12px;
+    text-align:center;
+    padding:0.88rem 0;
+    i{
+      display: block;
+      font-size: 30px;
+      text-align: center;
+    }
+  }
+}

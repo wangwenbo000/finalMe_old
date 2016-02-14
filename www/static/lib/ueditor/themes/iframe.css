@@ -1,0 +1,5 @@
+/*可以在这里添加你自己的css*/
+.edui-default .edui-editor{
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
