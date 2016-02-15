@@ -64,7 +64,7 @@
             <label for="exampleInputPassword1">确认密码</label>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
           </fieldset>
-          <button type="submit" class="btn btn-sm btn-primary">修改作者资料</button>
+          <button type="submit" class="btn btn-sm btn-warning">修改作者资料</button>
         </div>
 
         <button type="submit" class="btn btn-lg btn-primary">更新资料</button>

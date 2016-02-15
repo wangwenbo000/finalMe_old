@@ -19,14 +19,12 @@
         <tbody>
         <tr v-for="l in listData.data">
           <th scope="row"><input type="checkbox"></th>
-          <td><span :class="[l.show == 0 ? 'text-primary':'text-muted']" style="font-size: 16px;">{{{l.show | isShowIndex}}}</span> &nbsp;<strong><a
+          <td><span :class="[l.show == 0 && 'text-muted']" style="font-size: 16px;">{{{l.show | isShowIndex}}}</span> &nbsp;<strong><a
                 v-link="{name:'ctr',params:{newsId:l.id}}">{{l.title}}</a></strong></td>
           <td>{{l.category}}</td>
           <td>{{l.date | dateTime}}</td>
           <td>
-            <a class="btn btn-secondary btn-sm" @click="deleteItem(l,$index)">
-              <i class="fa fa-trash-o"></i>
-            </a>
+            <a href="javascript:;" @click="deleteItem(l,$index)">删除</a>
           </td>
         </tr>
         </tbody>
@@ -67,7 +65,16 @@
     mixins: [init],
     filters: {
       isShowIndex(value){
-        return value ? '<i class="fa fa-eye-slash"></i>' : '<i class="fa fa-eye"></i>';
+        switch (value){
+          case 0:
+            return '<i class="fa fa-eye-slash"></i>';
+          break;
+          case 1:
+            return '<i class="fa fa-arrow-up"></i>';
+          break;
+          default:
+            return '<i class="fa fa-eye"></i>';
+        }
       }
     }
   }

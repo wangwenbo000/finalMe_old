@@ -4,7 +4,7 @@
       <i class="fa fa-cube"></i> 分类管理
     </div>
     <div class="card-block">
-      <h6><input type="checkbox" checked>&nbsp; javascript</h6>
+      <h6 v-for="c in category"><input type="radio" name="categorylist" value="{{c.name}}" v-model="categorycheck">&nbsp; {{c.name}}</h6>
     </div>
     <div class="card-footer">
       <button type="button" class="btn btn-secondary">
@@ -18,5 +18,20 @@
 </template>
 
 <script type="text/babel">
+  export default{
+    props:['categorycheck'],
+    data(){
+      return {
+        categoryAPI: '/admin/category/index'
+      }
+    },
+    ready(){
+      this.$http.post(this.categoryAPI).then(response=> {
+        this.$set("category", response.data.data);
+      });
+    },
+    methods: {
 
+    }
+  }
 </script>

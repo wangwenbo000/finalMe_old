@@ -4,8 +4,8 @@
       <a v-link="{name:'ctr',params:{newsId:'Write'}}" class="btn btn-warning">
         <i class="fa fa-pencil"></i> 撰写
       </a>
-      <a v-link="{name:'ctr',params:{newsId:'Write'}}" class="btn btn-secondary">
-        <span class="text-danger"><i class="fa fa-trash-o"></i> 删除</span>
+      <a v-link="{name:'ctr',params:{newsId:'Write'}}" class="btn btn-secondary btn-danger-outline">
+        <span><i class="fa fa-trash-o"></i> 删除</span>
       </a>
       <a v-link="{name:'ctr',params:{newsId:'upload'}}" class="btn btn-secondary">
         <i class="fa fa-file-text-o"></i> 草稿箱

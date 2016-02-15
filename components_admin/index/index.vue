@@ -1,6 +1,26 @@
 <template>
   <div>
-    <Statistics></Statistics>
+    <Statistics :statistics="statistics"></Statistics>
+    <table class="table table-inverse table-bordered">
+      <thead>
+      <tr class="text-muted">
+        <th>服务器开启时间</th>
+        <th>运行模式</th>
+        <th>端口号</th>
+        <th>thinkjs版本</th>
+        <th>缓存目录 <a href="" class="btn btn-success btn-sm">清空缓存</a></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{statistics.startTime | dateTime}}</td>
+        <td>{{statistics.env}}</td>
+        <td>{{statistics.port}}</td>
+        <td>{{statistics.version}}</td>
+        <td>{{statistics.runtime}}</td>
+      </tr>
+      </tbody>
+    </table>
     <div class="card">
       <div class="card-header">
         <i class="fa fa-microphone"></i> <strong>控制台通告</strong>
@@ -14,26 +34,23 @@
           </li>
         </ul>
       </div>
-      <!--<div class="card-footer text-muted clearfix">-->
-      <!--<div class="pagebox pull-right">-->
-      <!--<div class="pagination-info">共有{{listData.count}}条，每页显示：{{listData.numsPerPage}}条</div>-->
-      <!--<nav id="pagination"></nav>-->
-      <!--<div class="pagination-go">-->
-      <!--<input type="text" class="form-control ipt">-->
-      <!--<a class="btn btn-secondary">GO</a>-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--</div>-->
     </div>
   </div>
 </template>
 
 <script type="text/babel">
   import Statistics from './statistics.vue'
+  import moment from 'moment'
   export default{
+    props: ["statistics"],
     components: {
       Statistics
-    }
+    },
+    filters: {
+      dateTime(value){
+        return moment(value).format('YYYY/MM/DD h:mm:ss');
+      }
+    },
   }
 </script>
 

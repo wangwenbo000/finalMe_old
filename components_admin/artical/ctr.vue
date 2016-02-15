@@ -16,11 +16,11 @@
           <script id="editor" name="content" type="text/plain"></script>
         </div>
         <div class="col-sm-2">
-          <Publish></Publish>
-          <Category></Category>
+          <Publish :lastdate.sync="input.lastdate" :date="input.date" :show.sync="input.show"></Publish>
+          <Category :categorycheck.sync="input.category"></Category>
           <button type="submit"
                   @click.stop.prevent="pushData"
-                  class="btn btn-warning btn-lg form-control"> 发表文章
+                  class="btn btn-success btn-lg form-control"> 发表文章
           </button>
         </div>
       </div>
@@ -31,6 +31,7 @@
 <script type="text/babel">
   import Publish from './publish.vue'
   import Category from './category.vue'
+  import moment from 'moment'
 
   import route from '../mixin/mixin_ctrAction';
 
@@ -38,7 +39,9 @@
     data(){
       return {
         input: {
-          content: ''
+          content: '',
+          lastdate:moment().format('YYYY/MM/DD h:mm:ss'),
+          date:moment().format('YYYY/MM/DD h:mm:ss')
         },
         actionName: '',
         ueditorDom: 'editor',
@@ -67,9 +70,7 @@
     },
     methods: {
       pushData(){
-        this.input.lastdate = moment();
         this.input.content = this.ue.getContent(this.input.content);
-//        this.input.show == true ? this.input.show = 1 : this.input.show = 0;
         this.$http.post(this.saveAPI, this.input).then(response=> {
           window.location.href = "#!/Artical";
         });

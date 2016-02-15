@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-2">
       <div class="card card-block text-center">
-        <h2 class="card-text"><i class="fa fa-newspaper-o"></i> 30</h2>
+        <h2 class="card-text"><i class="fa fa-newspaper-o"></i> {{statistics.articalCount}}</h2>
         <p class="card-text text-muted">文章</p>
       </div>
     </div>
@@ -20,7 +20,7 @@
     </div>
     <div class="col-sm-2">
       <div class="card card-block text-center">
-        <h2 class="card-text"><i class="fa fa-folder-open-o"></i> 3</h2>
+        <h2 class="card-text"><i class="fa fa-folder-open-o"></i> {{statistics.categoryCount}}</h2>
         <p class="card-text text-muted">分类目录</p>
       </div>
     </div>
@@ -43,6 +43,7 @@
   import moment from 'moment'
   import mr from 'moment-range'
   export default{
+    props:["statistics"],
     computed: {
       serverLastDay(){
         var start = moment();

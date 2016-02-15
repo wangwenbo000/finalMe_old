@@ -30,7 +30,7 @@ export default class extends Base {
   async addAction() {
     let id = this.post().id;
     if (think.isEmpty(id)) {
-      let insertId = await this.M().ctr(this.post());
+      let insertId = await this.M().add(this.post());
       this.success(insertId);
     } else {
       let data = await this.M().where({id: id}).update(this.post());

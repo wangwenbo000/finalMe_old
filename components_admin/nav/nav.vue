@@ -30,30 +30,6 @@
 
 <script type="text/babel">
   export default{
-    data(){
-      return {
-        getInfoAPI: '/admin/index/logininfo',
-        adminInfo: {
-          nickname: '',
-          username: ''
-        }
-      }
-    },
-    ready(){
-      this.$http.post(this.getInfoAPI).then(response=> {
-        this.$set("adminInfo", response.data.data);
-      });
-    },
-    computed: {
-      serverLastDay(){
-        return moment([2016, 9, 30]).toNow();
-      }
-    }
+    props:["adminInfo"]
   }
 </script>
-
-<style lang="sass?outputStyle=expanded">
-  .quickroad {
-    min-width: auto;
-  }
-</style>

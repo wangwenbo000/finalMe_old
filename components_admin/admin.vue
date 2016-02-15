@@ -1,13 +1,13 @@
 <template>
   <div>
-    <Topnav></Topnav>
+    <Topnav :admin-Info="globaldata.adminInfo"></Topnav>
     <div class="container">
       <div class="row">
         <div class="col-xs-1">
           <Slider></Slider>
         </div>
         <div class="col-xs-11">
-          <router-view transition="fade" transition-mode="out-in"></router-view>
+          <router-view transition="fade" transition-mode="out-in" :statistics="globaldata.statistics"></router-view>
         </div>
       </div>
     </div>
