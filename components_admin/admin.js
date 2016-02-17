@@ -30,6 +30,10 @@ router.map({
     name: 'Index',
     component: Index
   },
+  '/Console': {
+    name: 'console',
+    component: Index
+  },
   '/Artical': {
     name: 'artical',
     component: Artical

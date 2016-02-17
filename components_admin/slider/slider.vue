@@ -1,15 +1,14 @@
 <template>
   <div class="list-group sliderBar">
-    <a href="#" name="a" class="list-group-item"
-       :class="[$route.name=='Index'?'active':'']">
+    <a v-link="{name:'console',activeClass: 'active'}"
+       class="list-group-item">
       <i class="fa fa-tachometer"></i> 控制台
     </a>
-    <a v-link="{name:'artical'}"
-       class="list-group-item"
-       :class="[$route.name=='artical'?'active':'']">
+    <a v-link="{name:'artical',activeClass: 'active'}"
+       class="list-group-item">
       <i class="fa fa-newspaper-o"></i> 文章
     </a>
-    <a v-link="{name:'ctr',params:{newsId:'Write'}}"
+    <a v-link="{name:'ctr',params:{newsId:'Write'},activeClass: 'active'}"
        class="list-group-item"
        :class="[$route.name=='ctr'?'active':'']">
       <i class="fa fa-pencil"></i> 撰写
@@ -17,9 +16,8 @@
   </div>
 
   <div class="list-group sliderBar">
-    <a v-link="{name:'setting'}"
-       class="list-group-item"
-       :class="[$route.name=='setting'?'active':'']">
+    <a v-link="{name:'setting',activeClass: 'active'}"
+       class="list-group-item">
       <i class="fa fa-cog"></i> 设置
     </a>
     <a href="/admin/login/logout"

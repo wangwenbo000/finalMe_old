@@ -4,7 +4,9 @@
       <i class="fa fa-cube"></i> 分类管理
     </div>
     <div class="card-block">
-      <h6 v-for="c in category"><input type="radio" name="categorylist" value="{{c.name}}" v-model="categorycheck">&nbsp; {{c.name}}</h6>
+      <h6 v-for="c in category">
+        <input type="radio" name="categorylist" value="{{c.name}}" v-model="categorycheck">&nbsp; {{c.name}}
+      </h6>
     </div>
     <div class="card-footer">
       <button type="button" class="btn btn-secondary">

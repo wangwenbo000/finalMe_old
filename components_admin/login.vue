@@ -7,7 +7,7 @@
         </div>
         <input type="text" class="form-control" placeholder="username" autofocus v-model="login.username">
         <input type="password" class="form-control" placeholder="Password" v-model="login.password">
-        <button type="submit" class="btn btn-lg btn-primary btn-block" @click="loginInfo" v-on:keyup.enter="loginInfo">Sign in</button>
+        <button type="submit" class="btn btn-lg btn-primary btn-block" @click.prevent="loginInfo" v-on:keyup.enter="loginInfo">Sign in</button>
       </form>
   </div>
 </template>

@@ -9,18 +9,20 @@
                name="title"
                class="form-control"
                placeholder="请输入文章大标题"
-               v-model="input.title">
+               v-model="input.title"
+               autofocus
+        >
       </fieldset>
       <div class="row">
         <div class="col-sm-10">
           <script id="editor" name="content" type="text/plain"></script>
         </div>
         <div class="col-sm-2">
-          <Publish :lastdate.sync="input.lastdate" :date="input.date" :show.sync="input.show"></Publish>
+          <Publish :lastdate.sync="input.lastdate" :pushdate.sync="input.date" :show.sync="input.show"></Publish>
           <Category :categorycheck.sync="input.category"></Category>
           <button type="submit"
                   @click.stop.prevent="pushData"
-                  class="btn btn-success btn-lg form-control"> 发表文章
+                  class="btn btn-success btn-lg form-control"><i class="fa fa-bicycle"></i> {{pushBtnStr}}
           </button>
         </div>
       </div>
@@ -39,9 +41,7 @@
     data(){
       return {
         input: {
-          content: '',
-          lastdate:moment().format('YYYY/MM/DD h:mm:ss'),
-          date:moment().format('YYYY/MM/DD h:mm:ss')
+          content: ''
         },
         actionName: '',
         ueditorDom: 'editor',
@@ -61,8 +61,6 @@
       this.ue.ready(function () {
         _this.ue.setContent(_this.input.content);
       });
-      //初始化时间选择器
-      $('#datetimepicker').datetimepicker();
     },
     destroyed(){
       //页面跳转后销毁编辑器

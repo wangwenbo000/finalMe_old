@@ -17,24 +17,23 @@
         <i class="fa fa-calendar"></i> 最后修改时间<br>
       </li>
       <li class="list-group-item">
-        {{lastdate | dateTime}}
+        {{lastdate}}
       </li>
       <li class="list-group-item text-muted">
         <i class="fa fa-clock-o"></i> 发布时间
       </li>
     </ul>
-    <input type='text' class="form-control " id='datetimepicker' v-model="date" value="{{date}}"/>
+    <input type='text' class="form-control " id='datetimepicker' v-model="pushdate" value="{{pushdate}}"/>
   </div>
 </template>
 
 <script type="text/babel">
-//  import moment from 'moment'
+  import moment from 'moment'
   export default{
-    props:['lastdate','date','show'],
-//    filters: {
-//      dateTime(value){
-//        return moment(value).format('YYYY/MM/DD h:mm:ss');
-//      }
-//    },
+    props:['lastdate','pushdate','show'],
+    ready(){
+      //初始化时间选择器
+      $('#datetimepicker').datetimepicker();
+    }
   }
 </script>
