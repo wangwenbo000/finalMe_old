@@ -1,0 +1,16 @@
+<% articleList.data.forEach(function(item){%>
+<article>
+  <div class="meta">
+    <div class="date"><%=formatTime(item.date)%></div>
+    <div class="comment">
+    </div>
+  </div>
+  <h1 class="title">
+    <a href="/article/<%=item.routename%>.html"><%=item.title%></a>
+  </h1>
+  <div class="entry-content">
+    <!--<p><%-item.content%></p>-->
+    <p><a href="">阅读全文 »</a></p>
+  </div>
+</article>
+<%})%>

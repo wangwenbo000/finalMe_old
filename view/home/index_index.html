@@ -1,29 +1,3 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>wangwenbo.me</title>
-</head>
-<body>
-<div>
-  <h1>wangwenbo</h1>
-  <p class=subtitle>记录</p>
-  <div id="content">
-    <% articleList.data.forEach(function(item){%>
-    <article>
-      <div class="meta">
-        <div class="date"><%=formatTime(item.date)%></div>
-      </div>
-      <h1 class="title">
-        <a href=""><%=item.title%></a>
-      </h1>
-      <div class="entry-content">
-        <!--<p><%-item.content%></p>-->
-        <p>阅读全文</p>
-      </div>
-    </article>
-    <%})%>
-  </div>
-</div>
-</body>
-</html>
+<%- include public/header.html %>
+<%- include article/list.html %>
+<%- include public/footer.html %>

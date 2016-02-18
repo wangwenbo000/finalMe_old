@@ -12,5 +12,5 @@
  */
 import moment from 'moment';
 global.formatTime = function(time){
-  return moment(time).format('YYYY/MM/DD h:mm:ss');
+  return moment(time).format('ll');
 };
