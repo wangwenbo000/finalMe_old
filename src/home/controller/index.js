@@ -7,19 +7,19 @@ export default class extends Base {
    * index action
    * @return {Promise} []
    */
-  init(http){
+  init(http) {
     super.init(http);
-    this.modelInstance=this.model('article');
+    this.modelInstance = this.model('article');
   }
 
-  async indexAction(http){
+  async indexAction(http) {
     this.articlelist();
   }
 
-  async articlelist(){
-    var article=this.model('article');
-    var data=await article.order('id DESC').page(0, 20).countSelect();
+  async articlelist() {
+    var data = await this.modelInstance.order('id DESC').page(0, 20).countSelect();
     this.assign({
+      "title":"wangwenbo的小记录",
       articleList: data
     });
     return this.display();

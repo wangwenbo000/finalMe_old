@@ -11,7 +11,7 @@ export default class extends Base {
    * @return {Promise} []
    */
   async indexAction() {
-    let artical_model = this.model('artical');
+    let artical_model = this.model('article');
     let category_model = this.model('category');
 
     let adminLoginInfo = await this.session('adminInfo');

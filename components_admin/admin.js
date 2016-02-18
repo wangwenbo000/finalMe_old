@@ -11,8 +11,8 @@ import App from './admin.vue'
 
 //admin Components
 import Index from './index/index.vue'
-import Artical from './artical/artical.vue'
-import Ctr from './artical/ctr.vue'
+import Artical from './article/article.vue'
+import Ctr from './article/ctr.vue'
 import Setting from './setting/setting.vue'
 
 //vue路由设置
@@ -35,7 +35,7 @@ router.map({
     component: Index
   },
   '/Artical': {
-    name: 'artical',
+    name: 'article',
     component: Artical
   },
   '/Ctr/:newsId': {

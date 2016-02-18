@@ -1,13 +1,20 @@
 <article>
   <div class="meta">
-    <div class="date"><%=formatTime(item.date)%></div>
+    <div class="date"><%=formatTime(articlelist.date)%></div>
     <div class="comment">
+      <a href="/article/<%=articlelist.routename%>.html#disqus_thread">Comment</a>
+    </div>
+    <div class="category">
+      <%=articlelist.category%>
     </div>
   </div>
   <h1 class="title">
-    <a href=""><%=item.title%></a>
+    <%=articlelist.title%>
   </h1>
   <div class="entry-content">
-    <p><%-item.content%></p>
+    <p><%-articlelist.content%></p>
+    <p>本文最后更新时间:<%=formatTime(articlelist.lastdate)%></p>
   </div>
 </article>
+<%- include suggest.html %>
+<%- include comment.html %>

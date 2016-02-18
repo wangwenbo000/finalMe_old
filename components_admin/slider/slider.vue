@@ -4,7 +4,7 @@
        class="list-group-item">
       <i class="fa fa-tachometer"></i> 控制台
     </a>
-    <a v-link="{name:'artical',activeClass: 'active'}"
+    <a v-link="{name:'article',activeClass: 'active'}"
        class="list-group-item">
       <i class="fa fa-newspaper-o"></i> 文章
     </a>

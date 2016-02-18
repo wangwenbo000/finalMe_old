@@ -10,7 +10,7 @@ export default class extends Base {
    * @return {Promise} []
    */
   M() {
-    return this.model('artical');
+    return this.model('article');
   }
 
   //查询

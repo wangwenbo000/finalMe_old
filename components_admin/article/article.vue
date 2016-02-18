@@ -53,8 +53,8 @@
   export default{
     data(){
       return {
-        getAPI: '/admin/artical/get',
-        delAPI: '/admin/artical/del',
+        getAPI: '/admin/article/get',
+        delAPI: '/admin/article/del',
         listData: {},
         checkId:[]
       }
