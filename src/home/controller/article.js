@@ -19,6 +19,7 @@ export default class extends Base {
   async itemAction(http) {
     let routename = this.get('routename');
     var list = await this.modelInstance.where({"routename": routename}).select();
+    console.log(list);
     this.assign({
       "title": list[0].title,
       "articlelist": list[0],

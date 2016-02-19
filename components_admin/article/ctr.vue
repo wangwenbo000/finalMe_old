@@ -117,6 +117,7 @@
         this.$http.jsonp(this.routeTransAPI, transData).then(response=> {
           if(!response.data.error_code){
             let trans_Res = response.data.trans_result[0].dst.replace(/\s/g, "-");
+            trans_Res = trans_Res.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g,"");
             this.$set("input.routename", trans_Res);
           }
         });

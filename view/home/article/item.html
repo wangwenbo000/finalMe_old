@@ -5,7 +5,7 @@
       <a href="/article/<%=articlelist.routename%>.html#disqus_thread">Comment</a>
     </div>
     <div class="category">
-      <%=articlelist.category%>
+      <a href=""><%=articlelist.category%></a>
     </div>
   </div>
   <h1 class="title">
@@ -16,5 +16,9 @@
     <p>本文最后更新时间:<%=formatTime(articlelist.lastdate)%></p>
   </div>
 </article>
+<script src="/static/lib/ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
+<script>
+  SyntaxHighlighter.all();
+</script>
 <%- include suggest.html %>
 <%- include comment.html %>
