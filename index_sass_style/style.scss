@@ -1,4 +1,98 @@
+@import "../node_modules/compass-mixins/lib/compass/_reset.scss";
 body{
-color: #0a0a0a;
-  color: #0a0a0a;
+  background: #EFEFEF;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+a{
+  text-decoration: none;
+  color: #2f2f2f;
+}
+#container{
+  max-width: 1200px;
+  min-width: 320px;
+  margin: 20px auto;
+  background-color: #FFF;
+  padding: 30px;
+  word-wrap: break-word;
+}
+header{
+  border-bottom: 1px solid #EFEFEF;
+  padding: 0 0 10px;
+  h1,.subtitle,.rss{
+    display: inline-block;
+  }
+  h1{
+    font-size: 22px;
+  }
+  .subtitle{
+    color: #A9A9A9;
+    font-size: 12px;
+    text-indent: 10px;
+  }
+  .rss{
+    float: right;
+    padding: 0 2px;
+    background-color: #FF8100;
+    a{
+      color: #fff;
+    }
+  }
+}
+article{
+  margin-top: 32px;
+  border-bottom: 1px solid #EFEFEF;
+  padding: 10px;
+  .meta{
+    float: right;
+    .date,.comment,.category{
+      font-size: 12px;
+      color: #A9A9A9;
+    }
+    .comment,.category{
+      display: inline-block;
+    }
+    .date{
+      text-align: right;
+    }
+  }
+  .title{
+    font-size: 30px;
+    line-height: 1.2;
+  }
+  .entry-content{
+    color: #626262;
+    margin-top: 20px;
+    line-height: 1.8;
+    text-align: justify;
+    img{
+      max-width: 100%;
+    }
+    .readmore{
+      margin-top: 18px;
+      a{
+        color: #9ED2CC;
+      }
+    }
+  }
+}
+footer{
+  max-width: 1200px;
+  min-width: 320px;
+  margin: 20px auto;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #A9A9A9;
+}
+
+@media screen and (max-width: 640px) {
+  article{
+    .meta{
+      float: none;
+      margin-bottom: 10px;
+      .date,.comment,.category{
+        display: inline-block;
+      }
+    }
+  }
 }

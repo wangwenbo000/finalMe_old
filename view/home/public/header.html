@@ -2,12 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
   <title><%=title%></title>
   <script id="dsq-count-scr" src="//wangwenbo.disqus.com/count.js" async></script>
   <link href="/static/lib/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css" rel="stylesheet">
 </head>
+<style>
+  <%- include ../../../www/static/css/index_style.css %>
+</style>
 <body>
-<div>
-  <h1><a href="/">wangwenbo</a></h1>
-  <p class=subtitle>记录</p>
-  <p><a href="">rss</a></p>
+<div id="container">
+  <header>
+    <h1><a href="/">WANGWENBO.me</a></h1>
+    <p class=subtitle>记录</p>
+    <p class="rss"><a href="" >rss</a></p>
+  </header>
