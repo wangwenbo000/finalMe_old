@@ -20,9 +20,11 @@ export default{
       } else if (!isNaN(parseInt(id))) {
         this.$http.post(this.getAPI, {id: id}).then(response=> {
           var response = response.data.data[0];
+          let tagsArr = response.tags==null?[]:response.tags.split("|");
           this.$set("actionName", "更新文章ID:" + response.id);
           this.$set("pushBtnStr", "更新文章");
           this.$set("input", response);
+          this.$set("tag.tagArr", tagsArr);
           this.$set("input.lastdate",moment(response.lastdate).format(timeFormatStr));
           this.$set("input.date", moment(response.pushdate).format(timeFormatStr));
         });

@@ -23,3 +23,8 @@ global.cutContent = function (content) {
     return contentWithoutHTMLTag;
   }
 };
+
+global.tags2arr = function(tagArr){
+  console.log(tagArr);
+  return tagArr==null?[]:tagArr.split("|");
+};

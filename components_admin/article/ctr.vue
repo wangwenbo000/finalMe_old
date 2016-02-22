@@ -30,6 +30,22 @@
           <i class="fa fa-refresh"></i>
         </a>
       </fieldset>
+      <fieldset class="form-group text-muted">
+        <span class="text-info"><i class="fa fa-tags"></i>&nbsp;Tag:</span>
+        <span class="label label-default taglabel"
+              v-for="tag in tag.tagArr">
+          {{tag}}
+          <a href="javascript:;"
+             @click="delTag(tag)">
+            <i class="fa fa-times"></i>
+          </a>
+        </span>
+        <input type="text"
+               name="tagInput"
+               placeholder="输入文章关键词"
+               v-model="tag.nowInput"
+               @keyup.enter="tagInput">
+      </fieldset>
       <div class="row">
         <div class="col-sm-10">
           <script id="editor" name="content" type="text/plain"></script>
@@ -52,8 +68,6 @@
   import Category from './category.vue'
   import moment from 'moment'
   import Md5 from 'md5'
-
-
   import route from '../mixin/mixin_ctrAction';
 
   export default{
@@ -61,6 +75,10 @@
       return {
         input: {
           content: ''
+        },
+        tag: {
+          nowInput: '',
+          tagArr: []
         },
         actionName: '',
         //配置百度编辑器
@@ -76,7 +94,7 @@
     mixins: [route],
     components: {
       Publish,
-      Category
+      Category,
     },
     ready(){
       //初始化编辑器
@@ -90,7 +108,7 @@
       //页面跳转后销毁编辑器
       this.ue.destroy();
     },
-    computed:{
+    computed: {
       routeInputlength(){
         return this.input.routename.length;
       }
@@ -98,6 +116,7 @@
     methods: {
       pushData(){
         this.input.content = this.ue.getContent(this.input.content);
+        this.input.tags = this.tagArrCreate();
         this.$http.post(this.saveAPI, this.input).then(response=> {
           window.location.href = "#!/Artical";
         });
@@ -115,22 +134,41 @@
           sign: sign
         };
         this.$http.jsonp(this.routeTransAPI, transData).then(response=> {
-          if(!response.data.error_code){
+          if (!response.data.error_code) {
             let trans_Res = response.data.trans_result[0].dst.replace(/\s/g, "-");
-            trans_Res = trans_Res.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g,"");
+            trans_Res = trans_Res.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g, "");
             this.$set("input.routename", trans_Res);
           }
         });
+      },
+      tagArrCreate(){
+        return this.tag.tagArr.join("|");
+      },
+      tagInput(){
+        if (this.tag.nowInput.replace(/\s/g, "") !== "") {
+          this.tag.tagArr.push(this.tag.nowInput);
+          this.$set("tag.nowInput", "");
+        } else {
+          return false;
+        }
+      },
+      delTag(tag){
+        this.tag.tagArr.$remove(tag);
       }
     }
   }
 </script>
 
 <style lang="sass">
-  input[name="route"] {
+  input[name="route"], input[name="tagInput"] {
     border: none;
-    /*width: 200px;*/
     background-color: #FDFFC7;
     outline: none;
+    text-indent: 2px;
+    padding: 0 5px;
+    font-weight: 200;
+  }
+  .taglabel {
+    margin-right: 2px;
   }
 </style>

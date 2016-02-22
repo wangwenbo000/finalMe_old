@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "thinkjs": "2.1.x",
-    "babel-runtime": "6.x.x"
+    "babel-runtime": "^5.8.0"
   },
   "devDependencies": {
     "babel-cli": "6.x.x",
@@ -20,15 +20,19 @@
     "babel-plugin-transform-runtime": "6.x.x",
     "babel-preset-es2015-loose": "6.x.x",
     "babel-preset-stage-1": "6.x.x",
+    "babel-runtime": "^5.8.35",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
+    "md5": "^2.0.0",
     "moment": "^2.11.1",
+    "moment-range": "^2.1.0",
     "replace-webpack-plugin": "^0.1.2",
     "request-promise": "^2.0.0",
     "sass-loader": "^3.1.2",
     "vue": "^1.0.15",
-    "vue-resource": "^0.6.1",
+    "vue-loader": "^8.1.4",
+    "vue-resource": "^0.7.0",
     "vue-router": "^0.7.10",
-    "vue-validator": "^1.4.4"
+    "vue-validator": "^2.0.0-alpha.20"
   }
 }
