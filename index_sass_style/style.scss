@@ -1,13 +1,28 @@
 @import "../node_modules/compass-mixins/lib/compass/_reset.scss";
-body{
-  background: #EFEFEF;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$main-link-color: #8A6DBD;
+$global-bg-color: #EFEFEF;
+
+body {
+  background: $global-bg-color;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: normal;
 }
-a{
+
+.otheread ul li a,
+footer a,
+.entry-content .readmore a,
+.meta .category a,
+.meta .comment a {
+  color: $main-link-color;
+}
+
+a {
   text-decoration: none;
   color: #2f2f2f;
 }
-#container{
+
+#container {
   max-width: 1200px;
   min-width: 320px;
   margin: 20px auto;
@@ -15,67 +30,69 @@ a{
   padding: 30px;
   word-wrap: break-word;
 }
-header{
+
+header {
+  margin-bottom: 32px;
   border-bottom: 1px solid #EFEFEF;
   padding: 0 0 10px;
-  h1,.subtitle,.rss{
+  h1, .subtitle, .rss {
     display: inline-block;
   }
-  h1{
+  h1 {
     font-size: 22px;
   }
-  .subtitle{
+  .subtitle {
     color: #A9A9A9;
     font-size: 12px;
     text-indent: 10px;
   }
-  .rss{
+  .rss {
     float: right;
     padding: 0 2px;
     background-color: #FF8100;
-    a{
+    a {
       color: #fff;
     }
   }
 }
-article{
-  margin-top: 32px;
+
+article {
+  margin-bottom: 32px;
   border-bottom: 1px solid #EFEFEF;
   padding: 10px;
-  .meta{
+  .meta {
     float: right;
-    .date,.comment,.category{
+    .date, .comment, .category {
       font-size: 12px;
       color: #A9A9A9;
     }
-    .comment,.category{
+    .comment, .category {
       display: inline-block;
     }
-    .date{
+    .date {
       text-align: right;
     }
   }
-  .title{
+  .title {
     font-size: 30px;
     line-height: 1.2;
   }
-  .entry-content{
+  .entry-content {
     color: #626262;
+    font-size: 16px;
     margin-top: 20px;
     line-height: 1.8;
     text-align: justify;
-    img{
+    img {
       max-width: 100%;
     }
-    .readmore{
+    .readmore {
       margin-top: 18px;
-      a{
-        color: #9ED2CC;
-      }
     }
   }
 }
-footer{
+
+footer {
   max-width: 1200px;
   min-width: 320px;
   margin: 20px auto;
@@ -85,12 +102,26 @@ footer{
   color: #A9A9A9;
 }
 
+.otheread {
+  margin-bottom: 26px;
+  h3 {
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+  ul {
+    li {
+      margin-top: 6px;
+      text-indent: 10px;
+    }
+  }
+}
+
 @media screen and (max-width: 640px) {
-  article{
-    .meta{
+  article {
+    .meta {
       float: none;
       margin-bottom: 10px;
-      .date,.comment,.category{
+      .date, .comment, .category {
         display: inline-block;
       }
     }
