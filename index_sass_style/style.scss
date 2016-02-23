@@ -6,8 +6,8 @@ $global-font:16px "Helvetica Neue",Helvetica,"Lucida Grande","Luxi Sans",Arial,"
 
 body {
   background: $global-bg-color;
-  font-family: $global-font;
-  font-weight: normal;
+  font: $global-font;
+  //font-weight: normal;
 }
 
 header h1 a,
