@@ -13,10 +13,10 @@
   </h1>
   <div class="entry-content">
     <p><%-articlelist.content%></p>
-    <p>本文最后更新时间:<%=formatTime(articlelist.lastdate)%></p>
-    <p>Tags:
+    <p class="lastUpdate">本文最后更新时间:<%=formatTime(articlelist.lastdate,'YYYY/MM/DD hh:mm:ss')%></p>
+    <p class="tags">Tags:
       <% tags2arr(articlelist.tags).forEach(function(tags){%>
-      <a href="">#<%=tags%></a>
+      <a href=""># <%=tags%></a>
       <%})%>
     </p>
   </div>

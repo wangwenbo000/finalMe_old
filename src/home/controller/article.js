@@ -22,7 +22,9 @@ export default class extends Base {
     this.assign({
       "title": list[0].title,
       "articlelist": list[0],
-      "suggestList": this.suggestlist(list[0].category, list[0].id)
+      "suggestList": this.suggestlist(list[0].category, list[0].id),
+      "p": this.pagination({">": list[0].id}, "ID ASC"),
+      "n": this.pagination({"<": list[0].id}, "ID DESC")
     });
     return this.display();
   }
@@ -33,5 +35,16 @@ export default class extends Base {
       "id": {"!=": id}
     }).page(0, 5).countSelect();
     return suggest.data;
+  }
+
+  async pagination(action, order) {
+    let data = await this.modelInstance.where({
+        id: action
+      })
+      .field('title,routename')
+      .order(order)
+      .limit(1)
+      .countSelect();
+    return data.count ? data.data[0] : false;
   }
 }

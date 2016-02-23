@@ -11,20 +11,21 @@
  * }
  */
 import moment from 'moment';
-global.formatTime = function (time) {
-  return moment(time).format('ll');
+global.formatTime = function (time,str) {
+  str == null ? str = "ll" : str;
+  return moment(time).format(str);
 };
 
 global.cutContent = function (content) {
-  let contentWithoutHTMLTag = content.replace(/<[^>]+>/g,"")
-  if(contentWithoutHTMLTag.length>200){
-  return contentWithoutHTMLTag.substring(0,200)+"[...]";
-  }else {
+  let contentWithoutHTMLTag = content.replace(/<[^>]+>/g, "")
+  if (contentWithoutHTMLTag.length > 200) {
+    return contentWithoutHTMLTag.substring(0, 200) + "[...]";
+  } else {
     return contentWithoutHTMLTag;
   }
 };
 
-global.tags2arr = function(tagArr){
+global.tags2arr = function (tagArr) {
   console.log(tagArr);
-  return tagArr==null?[]:tagArr.split("|");
+  return tagArr == null ? [] : tagArr.split("|");
 };

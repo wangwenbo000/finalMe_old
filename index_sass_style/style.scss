@@ -1,19 +1,22 @@
 @import "../node_modules/compass-mixins/lib/compass/_reset.scss";
 
-$main-link-color: #8A6DBD;
+$main-link-color: #80939D;
 $global-bg-color: #EFEFEF;
+$global-font:16px "Helvetica Neue",Helvetica,"Lucida Grande","Luxi Sans",Arial,"Hiragino Sans GB",STHeiti,"Microsoft YaHei","Wenquanyi Micro Hei","WenQuanYi Micro Hei Mono","WenQuanYi Zen Hei","WenQuanYi Zen Hei Mono",LiGothicMed;
 
 body {
   background: $global-bg-color;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: $global-font;
   font-weight: normal;
 }
 
+header h1 a,
 .otheread ul li a,
 footer a,
 .entry-content .readmore a,
 .meta .category a,
-.meta .comment a {
+.meta .comment a,
+.pagination a{
   color: $main-link-color;
 }
 
@@ -32,7 +35,6 @@ a {
 }
 
 header {
-  margin-bottom: 32px;
   border-bottom: 1px solid #EFEFEF;
   padding: 0 0 10px;
   h1, .subtitle, .rss {
@@ -45,6 +47,7 @@ header {
     color: #A9A9A9;
     font-size: 12px;
     text-indent: 10px;
+    vertical-align: text-top;
   }
   .rss {
     float: right;
@@ -52,12 +55,13 @@ header {
     background-color: #FF8100;
     a {
       color: #fff;
+      vertical-align: sub;
     }
   }
 }
 
 article {
-  margin-bottom: 32px;
+  margin-top: 32px;
   border-bottom: 1px solid #EFEFEF;
   padding: 10px;
   .meta {
@@ -81,13 +85,28 @@ article {
     color: #626262;
     font-size: 16px;
     margin-top: 20px;
-    line-height: 1.8;
+    line-height: 2;
     text-align: justify;
     img {
       max-width: 100%;
     }
     .readmore {
       margin-top: 18px;
+    }
+    .lastUpdate {
+      background-color: #FFFCE8;
+      margin: 0 auto;
+      text-indent: 16px;
+      padding: 10px 0;
+      border-left: 4px solid #FBD757;
+    }
+    .tags {
+      margin-top: 12px;
+      a {
+        margin-left: 8px;
+        font-size: 12px;
+        color: #A9A9A9;
+      }
     }
   }
 }
@@ -103,16 +122,41 @@ footer {
 }
 
 .otheread {
-  margin-bottom: 26px;
+  border-bottom: 1px solid #EFEFEF;
+  padding: 16px 0;
   h3 {
     font-size: 22px;
     margin-bottom: 14px;
   }
   ul {
+    padding: 2px 20px;
     li {
       margin-top: 6px;
-      text-indent: 10px;
+      font-size: 14px;
+      list-style: initial;
+      time {
+        font-size: 12px;
+        color: #A9A9A9;
+      }
     }
+  }
+}
+
+.pagination {
+  border-bottom: 1px solid #EFEFEF;
+  overflow: auto;
+  padding: 26px 0;
+  zoom: 1;
+  font-size: 14px;
+  .next {
+    float: right;
+  }
+  .prev {
+    float: left;
+  }
+  .archive{
+    margin: auto;
+    text-align: center;
   }
 }
 
@@ -125,5 +169,9 @@ footer {
         display: inline-block;
       }
     }
+  }
+  header{
+    .subtitle{vertical-align: baseline;}
+    .rss{display: none;}
   }
 }
