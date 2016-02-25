@@ -1,11 +1,11 @@
 <article>
   <div class="meta">
-    <div class="date"><%=formatTime(articlelist.date)%></div>
+    <time><%=formatTime(articlelist.date)%></time>
     <div class="comment">
       <a href="/article/<%=articlelist.routename%>.html#disqus_thread">Comment</a>
     </div>
     <div class="category">
-      <a href=""><%=articlelist.category%></a>
+      <a href=""> / <%=articlelist.category%></a>
     </div>
   </div>
   <h1 class="title">
@@ -20,15 +20,16 @@
       <%})%>
     </p>
     <p class="license">
-      <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/cn/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/2.5/cn/80x15.png" /></a> 本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/cn/">知识共享署名-非商业性使用-禁止演绎 2.5 中国大陆许可协议</a>进行许可。
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/cn/">
+        <img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/2.5/cn/80x15.png" /></a>
+      本作品采用
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/cn/">
+        知识共享署名-非商业性使用-禁止演绎 2.5 中国大陆许可协议
+      </a>
+      进行许可。
     </p>
   </div>
 </article>
-<script src="/static/lib/googlecodeprettify/prettify.js"></script>
-<script>
-//  SyntaxHighlighter.all();
-prettyPrint();
-</script>
 <%- include suggest.html %>
 <%- include next_prev.html %>
 <%- include comment.html %>

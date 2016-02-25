@@ -20,6 +20,7 @@ export default class extends Base {
     var data = await this.modelInstance.order('id DESC').page(0, 20).countSelect();
     this.assign({
       "title":"wangwenbo的小记录",
+      blogname:think.config('blog_name',undefined,'admin'),
       articleList: data
     });
     return this.display();

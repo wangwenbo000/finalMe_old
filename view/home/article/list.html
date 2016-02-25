@@ -1,7 +1,7 @@
 <% articleList.data.forEach(function(list){%>
 <article>
   <div class="meta">
-    <div class="date"><%=formatTime(list.date)%></div>
+    <time><%=formatTime(list.date)%></time>
     <div class="comment">
       <a href="/article/<%=list.routename%>.html#disqus_thread">Comment</a>
     </div>
@@ -18,4 +18,7 @@
   </div>
 </article>
 <%})%>
+<%if(articleList.totalPages === 0){%>
+  <p class="emptyArticle">暂时没有撰写过任何文章,请登陆后台开始撰写创作!</p>
+<%}%>
 <%- include list_pag.html %>

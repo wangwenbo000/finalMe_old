@@ -11,7 +11,7 @@
  * }
  */
 import moment from 'moment';
-global.formatTime = function (time,str) {
+global.formatTime = function (time, str) {
   str == null ? str = "ll" : str;
   return moment(time).format(str);
 };
@@ -28,4 +28,13 @@ global.cutContent = function (content) {
 global.tags2arr = function (tagArr) {
   console.log(tagArr);
   return tagArr == null ? [] : tagArr.split("|");
+};
+
+global.getBlogTplInfo = function () {
+  return {
+    blogname:think.config('blog_name',undefined,'admin'),
+    subtitle:think.config('sub_title',undefined,'admin'),
+    icp:think.config('icp_num',undefined,'admin'),
+    tv:think.config('think_vision',undefined,'admin'),
+  }
 };
