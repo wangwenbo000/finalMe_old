@@ -86,6 +86,7 @@ header {
   .sharegroup {
     height: 26px;
     float: right;
+    border-left:1px solid #efefef;
   }
   .share:hover {
     @include opacity(1);
