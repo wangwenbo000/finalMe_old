@@ -4,3 +4,4 @@ node_modules/
 /src/common/config/db.js
 .idea/
 app/
+*.json.gzip
