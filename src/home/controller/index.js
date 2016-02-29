@@ -13,13 +13,23 @@ export default class extends Base {
   }
 
   async indexAction(http) {
-    this.articlelist();
+    var pn = this.get('pn');
+    var listrows = think.config('nums_per_page',undefined,'admin');
+    var pnfliter = await this.modelInstance.where({"show":{"!=":0}}).page(1, listrows).countSelect();
+    var totalpages = pnfliter.totalPages;
+
+    if(!pn){
+      pn = 1;
+    } else if(pn > totalpages){
+      pn = totalpages;
+    }
+
+    this.articlelist(pn,listrows);
   }
 
-  async articlelist() {
-    var data = await this.modelInstance.order('id DESC').page(0, 20).countSelect();
+  async articlelist(pn,listrows) {
+    var data = await this.modelInstance.where({"show":{"!=":0}}).page(pn, listrows).order({'show':'ASC','id':'DESC'}).countSelect();
     this.assign({
-      "title":"wangwenbo的小记录",
       blogname:think.config('blog_name',undefined,'admin'),
       articleList: data
     });

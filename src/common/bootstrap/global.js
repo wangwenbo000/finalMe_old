@@ -26,7 +26,6 @@ global.cutContent = function (content) {
 };
 
 global.tags2arr = function (tagArr) {
-  console.log(tagArr);
   return tagArr == null ? [] : tagArr.split("|");
 };
 

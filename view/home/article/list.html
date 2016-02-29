@@ -1,3 +1,4 @@
+<script id="dsq-count-scr" src="//wangwenbo.disqus.com/count.js" async></script>
 <% articleList.data.forEach(function(list){%>
 <article>
   <div class="meta">
@@ -11,6 +12,9 @@
   </div>
   <h1 class="title">
     <a href="/article/<%=list.routename%>.html"><%=list.title%></a>
+    <%if(list.show === 1){%>
+    <span>置顶</span>
+    <%}%>
   </h1>
   <div class="entry-content">
     <p><%-cutContent(list.content)%></p>
@@ -19,6 +23,6 @@
 </article>
 <%})%>
 <%if(articleList.totalPages === 0){%>
-  <p class="emptyArticle">暂时没有撰写过任何文章,请登陆后台开始撰写创作!</p>
+  <p class="emptyArticle">作者还没有撰写任何文章,或设定了文章不公开发布!</p>
 <%}%>
 <%- include list_pag.html %>
