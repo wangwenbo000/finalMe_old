@@ -1,3 +1,4 @@
+<%if(articleList.totalPages){%>
 <div class="pagination">
   <%if(articleList.currentPage < articleList.totalPages){%>
   <p class="next"><a href="/p/<%-articleList.currentPage+1%>.html">下一页 »</a></p>
@@ -7,3 +8,4 @@
   <%}%>
   <p class="archive"><a href="">归档</a></p>
 </div>
+<%}%>
