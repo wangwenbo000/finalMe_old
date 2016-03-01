@@ -3,10 +3,10 @@
     <Topnav :admin-Info="globaldata.adminInfo"></Topnav>
     <div class="container">
       <div class="row">
-        <div class="col-xs-1">
+        <div class="col-xs-1 tools-space">
           <Slider></Slider>
         </div>
-        <div class="col-xs-11">
+        <div class="col-xs-11 admin-panel">
           <router-view transition="fade" transition-mode="out-in" :statistics="globaldata.statistics"></router-view>
         </div>
       </div>

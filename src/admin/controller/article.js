@@ -20,7 +20,7 @@ export default class extends Base {
     let id = this.post('id');
     let pageIndex = this.post().page || 1;
     if (think.isEmpty(id)) {
-      let data = await this.modelInstance.page(pageIndex, 20).order('id DESC').countSelect();
+      let data = await this.modelInstance.page(pageIndex, 20).order({'show':'ASC','id':'DESC'}).countSelect();
       this.success(data);
     } else {
       let data = await this.modelInstance.where({id: id}).select();

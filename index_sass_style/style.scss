@@ -12,7 +12,7 @@ $twitter-icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAArCAMAAADWg4
 $logo: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaAQMAAAACZtNBAAAABlBMVEX/8hwAAABpmPkZAAAAR0lEQVQ4y83PwQkAIAiFYZus0XQ0R3ETE6VjBEEP/9t30kdNYmWB4RZ7JGdMQ8Irpa8YvpeikL3DFYb6Oq9PgyGqxayEQoMWgxtJa2N+9pwAAAAASUVORK5CYII=';
 $reading: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoAQMAAAC2MCouAAAABlBMVEUAAADT09eYCuMNAAAAAXRSTlMAQObYZgAAAEVJREFUCNdjwARsQJzAwP7///8HYPIDA/uPOvkPDPwMdQwfGPiAZAGU5AGSBgwSDHVAzAEkBRgYgCTDgJP/QQQ/0OGYAAD4fh4Pv8oSVAAAAABJRU5ErkJggg==';
 $link-icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKAQMAAAC3/F3+AAAABlBMVEUAAACOr9zoNrGcAAAAAXRSTlMAQObYZgAAACRJREFUCNdjsGdgcGhgaHBg6HNgaHNg6HJgmODAsMABKAiUAgBl+QbNAkbw5QAAAABJRU5ErkJggg==';
-$nav-bar: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoAQMAAAC2MCouAAAABlBMVEUAAADT09eYCuMNAAAAAXRSTlMAQObYZgAAAB9JREFUCNdjIB7I/////w+DPZjEAANkzg+IOVA2EQAAQ/4dAcBzchAAAAAASUVORK5CYII=';
+$archives-icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAM1BMVEUAAADT09fT09fT09fT09fT09fT09fT09fT09fT09fT09fT09fT09fT09fT09fT09fT09f8vJi2AAAAEHRSTlMAbnjEUEC8SOlbHeKeNBGSzYuUAQAAAJBJREFUOMvt0ssKxCAMheFEreOl2vP+TzsbG4SSSGFmMUO/VRY/IYL0bzwW4ggBbwLOMJIpSugXp30+vH9jZWfgeoYJC2mExeHYVAdcoaEhkyqjyRzAesgI17BnFrnrYUmYpKKGO9xLOOxq6EETeGvjJpSN926kzk6w9uqrJ/xaaP/wMM01quq0pSUYUqMf8QY/zxAsacsMbAAAAABJRU5ErkJggg==';
 
 @mixin share-icon($width-height:100px, $icon-base64:'') {
   width: $width-height;
@@ -70,6 +70,7 @@ header {
   }
   h1 {
     font-size: 22px;
+    font-weight: 100;
   }
   .subtitle {
     color: #A9A9A9;
@@ -90,8 +91,8 @@ header {
   .readingCtr {
     background-image: url($reading);
   }
-  .nav {
-    background-image: url($nav-bar);
+  .archives-icon {
+    background-image: url($archives-icon);
   }
   .headerBtn {
     background-repeat: no-repeat;
@@ -245,7 +246,9 @@ article {
     text-align: justify;
     color: #626262;
     font-size: 16px;
+    padding-bottom: 30px;
     margin-bottom: 40px;
+    border-bottom: 1px solid #efefef;
   }
 }
 .archives{
@@ -258,9 +261,9 @@ article {
       time{
         font-size: 12px;
         color: #A9A9A9;
-        i {
-          font-family: "Courier New", Courier, monospace;
-        }
+      }
+      span{
+        font-size: 12px;
       }
     }
   }

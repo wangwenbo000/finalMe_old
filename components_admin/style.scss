@@ -7,6 +7,12 @@
   background: #fff;
   border:1px solid #eaeaea;
 }
+.tools-space{
+  width: 6%;
+}
+.admin-panel{
+  width: 94%;
+}
 
 //过渡样式
 .fade-transition {
@@ -61,10 +67,10 @@ input[name="title"]{
   a{
     font-size: 12px;
     text-align:center;
-    padding:0.88rem 0;
+    padding:0.68rem 0;
     i{
       display: block;
-      font-size: 30px;
+      font-size: 22px;
       text-align: center;
     }
   }

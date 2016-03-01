@@ -10,7 +10,9 @@
   <ul>
     <% list.list.forEach(function(post){%>
     <li><a href="/article/<%=post.routename%>"><%-post.title%></a>
+      <span>- <%=post.category%> </span>
       <time><i>( <%-formatTime(post.date)%> )</i></time>
+
     </li>
     <%})%>
   </ul>
