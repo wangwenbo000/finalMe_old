@@ -21,4 +21,21 @@ export default class extends think.controller.base {
 
     return Object.keys(dateMap).map(key => dateMap[key]);
   }
+  gatherCategories(categories) {
+    let dateMap = {};
+
+    categories.forEach(cg => {
+      let key = cg.category;
+      if (!dateMap[key]) {
+        dateMap[key] = {
+          cate: cg.category,
+          list: []
+        }
+      }
+
+      dateMap[key].list.push(cg);
+    });
+
+    return Object.keys(dateMap).map(key => dateMap[key]);
+  }
 }

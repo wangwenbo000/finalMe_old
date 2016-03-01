@@ -13,6 +13,7 @@ $logo: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaAQMAAAACZtNBAAAABl
 $reading: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoAQMAAAC2MCouAAAABlBMVEUAAADT09eYCuMNAAAAAXRSTlMAQObYZgAAAEVJREFUCNdjwARsQJzAwP7///8HYPIDA/uPOvkPDPwMdQwfGPiAZAGU5AGSBgwSDHVAzAEkBRgYgCTDgJP/QQQ/0OGYAAD4fh4Pv8oSVAAAAABJRU5ErkJggg==';
 $link-icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKAQMAAAC3/F3+AAAABlBMVEUAAACOr9zoNrGcAAAAAXRSTlMAQObYZgAAACRJREFUCNdjsGdgcGhgaHBg6HNgaHNg6HJgmODAsMABKAiUAgBl+QbNAkbw5QAAAABJRU5ErkJggg==';
 $archives-icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAM1BMVEUAAADT09fT09fT09fT09fT09fT09fT09fT09fT09fT09fT09fT09fT09fT09fT09fT09f8vJi2AAAAEHRSTlMAbnjEUEC8SOlbHeKeNBGSzYuUAQAAAJBJREFUOMvt0ssKxCAMheFEreOl2vP+TzsbG4SSSGFmMUO/VRY/IYL0bzwW4ggBbwLOMJIpSugXp30+vH9jZWfgeoYJC2mExeHYVAdcoaEhkyqjyRzAesgI17BnFrnrYUmYpKKGO9xLOOxq6EETeGvjJpSN926kzk6w9uqrJ/xaaP/wMM01quq0pSUYUqMf8QY/zxAsacsMbAAAAABJRU5ErkJggg==';
+$categories-icon:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAANlBMVEUAAADX19vX19vX19vX19vX19vX19vX19vX19vX19vX19vX19vX19vX19vX19vX19vX19vX19sf+XMFAAAAEXRSTlMAqTMptDu9nsWFRWUb4xPab27hr00AAAC/SURBVDjL1ZRLDoQgEAX5g4Cfd//LTkyTplkgm5lkrFWnUjGK2uo1bFE3Ysy38LGbTXSQVKUOSHqpkbInCuCVMsDVRE7QIjQ8h3u2SCzsJNQUuknoeXYUBhbmdaGdP3UdwsLzSeHOogwhgiNOUIi9iQBx9QxBojsVZMVU0yEjRFW/5LAdMkIcvfMQuIeH0UAKxM7H00TCcI7X+sDXr/BfPrNvhuvfdRK65wWQvCF4pZQmfOBwvaQe1l4e1t5b+AAkSxL2JaWPAgAAAABJRU5ErkJggg==';
 
 @mixin share-icon($width-height:100px, $icon-base64:'') {
   width: $width-height;
@@ -37,6 +38,7 @@ header h1 a,
 .otheread ul li a,
 footer a,
 .archives a,
+.cate-list li a,
 .entry-content a,
 .meta .category a,
 .meta .comment a,
@@ -93,6 +95,9 @@ header {
   }
   .archives-icon {
     background-image: url($archives-icon);
+  }
+  .category-icon{
+    background-image: url($categories-icon);
   }
   .headerBtn {
     background-repeat: no-repeat;
@@ -268,6 +273,22 @@ article {
     }
   }
 }
+.cate-list{
+  float: right;
+  border: 1px solid #EFEFEF;
+  padding: 0 16px;
+  list-style: none;
+  margin-right: 20px;
+  li{
+    margin: 10px 0;
+    font-size: 14px;
+  }
+  .title{
+    border-bottom: 1px solid #EFEFEF;
+    padding-bottom: 10px;
+    font-weight: bold;
+  }
+}
 
 
 footer {
@@ -290,7 +311,7 @@ footer {
   ul {
     padding: 2px 20px;
     li {
-      margin-top: 6px;
+      margin-top: 8px;
       font-size: 14px;
       list-style: initial;
       time {
@@ -426,7 +447,7 @@ pre[class*="language-"] {
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-  background-color: #FDFAF1; /* base3 */
+  background-color: #FFFCF2; /* base3 */
 }
 
 /* Inline code */
