@@ -3,10 +3,15 @@
   <p>本博客最早一篇文章创建于 2008 年 7 月，当时我从自己开发的 ASP 博客系统迁到 WordPress，之前的文章未迁移。2013 年 3 月，又从 WordPress 迁到自己开发的 Python 博客系统（详情），文章迁移了一部分。2014 年初再次改用 NodeJS 重新开发了博客系统（详情），数据完全保留，使用至今。
     Kindle Paperwhite 国行发布时，我第一时间入手了一台。几年用下来，在亚马逊和图灵社区购买的 Kindle 版书籍加起来也有几十本了。几个月前，我又入手了更轻更薄的 Kindle Voyage，随身携带更方便。如果你也喜欢用 Kindle 阅读，请下载本站合辑 Kindle 版。</p>
 </div>
-
+<ul class="cate-list">
+  <li class="title">日期列表</li>
+  <% archiveList.forEach(function(list){%>
+  <li><a href="#<%-formatTime(list.date,'YYYY / MM')%>" name="<%-formatTime(list.date,'YYYY / MM')%>"><%-formatTime(list.date,'YYYY / MM')%></a></li>
+  <%})%>
+</ul>
 <% archiveList.forEach(function(list){%>
 <section class="archives">
-  <h1 class="year"><%-formatTime(list.date,'YYYY / MM')%></h1>
+  <h1 class="year" name="<%-formatTime(list.date,'YYYY / MM')%>"><%-formatTime(list.date,'YYYY / MM')%></h1>
   <ul>
     <% list.list.forEach(function(post){%>
     <li><a href="/article/<%=post.routename%>"><%-post.title%></a>
