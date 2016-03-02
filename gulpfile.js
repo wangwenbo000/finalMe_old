@@ -4,6 +4,7 @@ var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var minifyCSS = require('gulp-minify-css');
 var minifyejs = require('gulp-minify-ejs');
+var uglify = require('gulp-uglify');
 
 gulp.task('sass', function () {
   return gulp.src('./index_sass_style/style.scss')
