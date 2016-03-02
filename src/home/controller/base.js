@@ -29,11 +29,13 @@ export default class extends think.controller.base {
       if (!dateMap[key]) {
         dateMap[key] = {
           cate: cg.category,
-          list: []
+          list: [],
+          count:''
         }
       }
 
       dateMap[key].list.push(cg);
+      dateMap[key].count=dateMap[key].list.length;
     });
 
     return Object.keys(dateMap).map(key => dateMap[key]);

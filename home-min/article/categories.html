@@ -11,7 +11,7 @@
 </ul>
 <% categoriesList.forEach(function(list){%>
 <section class="archives">
-  <h1 class="year" name="<%=list.cate%>"><%=list.cate%></h1>
+  <h1 class="year" name="<%=list.cate%>"><%=list.cate%>&nbsp;(<%=list.count%>)</h1>
   <ul>
     <% list.list.forEach(function(post){%>
     <li><a href="/article/<%=post.routename%>"><%-post.title%></a>
