@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+    <title><![CDATA[<%- siteInfo.blog_name %>]]></title>
+    <link href="<%= siteInfo.website_domain %>atom.xml" rel="self"/>
+    <link href="<%= siteInfo.website_domain %>"/>
+    <updated><%= updateTime %></updated>
+    <id><%= siteInfo.website_domain %></id>
+    <author>
+        <name><![CDATA[<%= siteInfo.website_author_name %>]]></name>
+    </author>
+    <generator uri="http://wangwenbo.me/">wangwenbo.me</generator>
+    <% list.forEach(function(post) { %>
+    <entry>
+        <title type="html"><![CDATA[<%- post.title %>]]></title>
+        <link href="<%= siteInfo.website_domain %>/<%= post.routename %>"/>
+        <updated><%= post.lastdate %></updated>
+        <id><%= siteInfo.website_domain %>/<%= post.routename %></id>
+        <content type="html">
+            <%=post.content%>
+            <a href="<%= siteInfo.website_domain %>/<%= post.routename %>">阅读全文</a>
+        </content>
+    </entry>
+    <% }) %>
+</feed>
