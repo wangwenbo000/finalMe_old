@@ -2,8 +2,7 @@
   <div class="meta">
     <time><%=formatTime(articlelist.date)%></time>
     <div class="comment">
-      <a href="/article/<%=articlelist.routename%>.html#disqus_thread">0&nbsp;Comments</a>
-      <!--<span class="disqus-comment-count" data-disqus-identifier="<%=articlelist.id%>">-->
+      <a href="/article/<%=articlelist.routename%>.html#disqus_thread">0&nbsp;<%=articlelist.dqsComments%></a>
     </div>
     <div class="category">
       <a href="/categories.html#<%=articlelist.category%>" name="<%=articlelist.category%>">
@@ -38,7 +37,7 @@
   </div>
 </article>
 <script>
-  Echo.init({offset: 1000,throttle: 650,unload: false});
+  Echo.init({offset: 1000,unload: false});
 </script>
 <%- include suggest.html %>
 <%- include next_prev.html %>
