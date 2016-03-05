@@ -31,7 +31,7 @@ export default class extends Base {
 
   async articlelist(pn,listrows) {
     var data = await this.modelInstance.cache(1800).where({"show":{"!=":0}}).page(pn, listrows).order({'show':'ASC','id':'DESC'}).countSelect();
-    this.session();
+
     if(think.isEmpty(await this.session('dqsComments'))){
       var routename = await this.modelInstance.cache(1800).where({"show":{"!=":0}}).page(pn, listrows).order({'show':'ASC','id':'DESC'}).field('routename').select();
       var linkVar = 'link:'+encodeURIComponent(this.objtoarr(routename).join('&'));
@@ -46,8 +46,6 @@ export default class extends Base {
       };
 
       var response = await rp(options);
-      //console.log(linkVar);
-      console.log(response);
       let commentsCount = {};
       for(var cc in response.response){
         commentsCount[parseInt(response.response[cc].identifiers[0])]= response.response[cc].posts;

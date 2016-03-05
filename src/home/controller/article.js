@@ -21,35 +21,27 @@ export default class extends Base {
     let routename=this.get('routename');
     var list=await this.modelInstance.cache(routename, 1800).where({"routename": routename}).select();
     list[0].content=list[0].content.replace(/<img src/gi, "<img src='/static/img/loading.gif' data-echo");
-    this.session();
+    console.log(think.isEmpty(await this.session('dqs_' + list[0].id)));
     if(think.isEmpty(await this.session('dqs_' + list[0].id))){
-
+      var options={
+        method: 'GET',
+        uri: 'https://disqus.com/api/3.0/threads/list.json',
+        qs: {
+          api_key: 'nXHXoex8H7nLQodiafaYwmTBR8KRZjwAjCpPqGqTMyUsGWe0CLcxL6tXOXcgPfyF',
+          forum: 'wangwenbo',
+          thread: 'link:http://10.0.1.11/article/'+routename+'.html'
+        },
+        json: true
+      };
+      var response=await rp(options);
+      await this.session('dqs_' + list[0].id, response.response[0].posts, 1800);
     }
-    var linkVar = 'link:' + 'http://127.0.0.1:8360/article/' + routename + '.html';
-    var options={
-      uri: 'https://disqus.com/api/3.0/threads/list.json',
-      qs: {
-        api_key: 'nXHXoex8H7nLQodiafaYwmTBR8KRZjwAjCpPqGqTMyUsGWe0CLcxL6tXOXcgPfyF',
-        forum: 'wangwenbo',
-        identifiers: ['138']
-      },
-      headers: {
-        'User-Agent': 'Request-Promise'
-      },
-      json: true
 
-    };
-    var response=await rp(options);
-    //console.log(response.response.length);
-    console.log(linkVar);
-    console.log(response.response);
-
-    await this.session('dqs_' + list[0].id, response.response.post, 1800);
     this.assign({
       "title": list[0].title,
       "articlelist": list[0],
       "suggestList": this.suggestlist(list[0].category, list[0].id),
-      "dqsComments": this.session('dqs_' + list[0].id, response.response[0].post, 1800),
+      "dqsComments": await this.session('dqs_' + list[0].id),
       "p": this.pagination({">": list[0].id}, "ID ASC"),
       "n": this.pagination({"<": list[0].id}, "ID DESC")
     });
