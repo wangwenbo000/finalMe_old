@@ -28,8 +28,8 @@ export default class extends Base {
         uri: 'https://disqus.com/api/3.0/threads/list.json',
         qs: {
           api_key: 'nXHXoex8H7nLQodiafaYwmTBR8KRZjwAjCpPqGqTMyUsGWe0CLcxL6tXOXcgPfyF',
-          forum: 'wangwenbo',
-          thread: 'link:http://10.0.1.11/article/'+routename+'.html'
+          forum: 'wwblocal',
+          thread: 'link:http://10.0.1.8/article/'+routename+'.html'
         },
         json: true
       };

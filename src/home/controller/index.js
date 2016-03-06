@@ -39,7 +39,7 @@ export default class extends Base {
         uri: 'https://disqus.com/api/3.0/threads/list.json',
         qs: {
           api_key: 'nXHXoex8H7nLQodiafaYwmTBR8KRZjwAjCpPqGqTMyUsGWe0CLcxL6tXOXcgPfyF',
-          forum: 'wangwenbo',
+          forum: 'wwblocal',
           thread:linkVar
         },
         json: true
@@ -65,7 +65,7 @@ export default class extends Base {
   objtoarr(listdata){
     var routeArr = [];
     listdata.forEach(function(r){
-      routeArr.push("http://127.0.0.1:8360/article/"+r.routename+".html");
+      routeArr.push("http://10.0.1.8/article/"+r.routename+".html");
     });
     return routeArr;
   }
