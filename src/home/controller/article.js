@@ -21,27 +21,21 @@ export default class extends Base {
     let routename=this.get('routename');
     var list=await this.modelInstance.cache(routename, 1800).where({"routename": routename}).select();
     list[0].content=list[0].content.replace(/<img src/gi, "<img src='/static/img/loading.gif' data-echo");
-    console.log(think.isEmpty(await this.session('dqs_' + list[0].id)));
-    if(think.isEmpty(await this.session('dqs_' + list[0].id))){
-      var options={
-        method: 'GET',
-        uri: 'https://disqus.com/api/3.0/threads/list.json',
-        qs: {
-          api_key: 'nXHXoex8H7nLQodiafaYwmTBR8KRZjwAjCpPqGqTMyUsGWe0CLcxL6tXOXcgPfyF',
-          forum: 'wwblocal',
-          thread: 'link:http://10.0.1.8/article/'+routename+'.html'
-        },
-        json: true
-      };
-      var response=await rp(options);
-      await this.session('dqs_' + list[0].id, response.response[0].posts, 1800);
+
+    let link='link:' + think.config('blog_info').website_domain + '/article/' + routename + '.html';
+    let session_name='dqs_' + list[0].id;
+    let sessionValue=await this.session(session_name);
+    if(think.isEmpty(sessionValue) && parseInt(sessionValue)!=0){
+      let response=await this.dqs(link);
+      console.log(response.response);
+      await this.session(session_name, response.response[0]['posts'], 1800);
     }
 
     this.assign({
       "title": list[0].title,
       "articlelist": list[0],
       "suggestList": this.suggestlist(list[0].category, list[0].id),
-      "dqsComments": await this.session('dqs_' + list[0].id),
+      "dqsComments": await this.session(session_name),
       "p": this.pagination({">": list[0].id}, "ID ASC"),
       "n": this.pagination({"<": list[0].id}, "ID DESC")
     });

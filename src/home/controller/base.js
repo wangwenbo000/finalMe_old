@@ -41,4 +41,20 @@ export default class extends think.controller.base {
 
     return Object.keys(dateMap).map(key => dateMap[key]);
   }
+
+  async dqs(link){
+    var options = {
+      method: 'GET',
+      uri: 'https://disqus.com/api/3.0/threads/list.json',
+      qs: {
+        api_key: 'nXHXoex8H7nLQodiafaYwmTBR8KRZjwAjCpPqGqTMyUsGWe0CLcxL6tXOXcgPfyF',
+        forum: think.config('disqus').short_name,
+        thread:link
+      },
+      json: true
+    };
+    var response = await rp(options);
+    //console.log(response);
+    return response
+  }
 }

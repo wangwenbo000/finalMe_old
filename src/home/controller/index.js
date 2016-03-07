@@ -33,26 +33,14 @@ export default class extends Base {
     var data = await this.modelInstance.cache(1800).where({"show":{"!=":0}}).page(pn, listrows).order({'show':'ASC','id':'DESC'}).countSelect();
 
     if(think.isEmpty(await this.session('dqsComments'))){
-      var routename = await this.modelInstance.cache(1800).where({"show":{"!=":0}}).page(pn, listrows).order({'show':'ASC','id':'DESC'}).field('routename').select();
-      var linkVar = 'link:'+encodeURIComponent(this.objtoarr(routename).join('&'));
-      var options = {
-        uri: 'https://disqus.com/api/3.0/threads/list.json',
-        qs: {
-          api_key: 'nXHXoex8H7nLQodiafaYwmTBR8KRZjwAjCpPqGqTMyUsGWe0CLcxL6tXOXcgPfyF',
-          forum: 'wwblocal',
-          thread:linkVar
-        },
-        json: true
-      };
-
-      var response = await rp(options);
+      var linkVar = 'link:'+this.objtoarr(data.data).join('&');
+      let response = await this.dqs(linkVar);
       let commentsCount = {};
       for(var cc in response.response){
         commentsCount[parseInt(response.response[cc].identifiers[0])]= response.response[cc].posts;
       }
       await this.session('dqsComments',commentsCount,1800);
     }
-
 
     this.assign({
       blogname:think.config('blog_name',undefined,'admin'),
@@ -64,8 +52,9 @@ export default class extends Base {
 
   objtoarr(listdata){
     var routeArr = [];
+    var localUrl = think.config('blog_info').website_domain;
     listdata.forEach(function(r){
-      routeArr.push("http://10.0.1.8/article/"+r.routename+".html");
+      routeArr.push(localUrl +"/article/"+r.routename+".html");
     });
     return routeArr;
   }

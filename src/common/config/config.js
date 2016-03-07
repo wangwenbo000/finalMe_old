@@ -40,8 +40,8 @@ export default {
   blog_info: {
     blog_name: "WANGWENBO.me",//站点主标题
     sub_title: "专注折腾",//副标题
-    icp_num: "12345678",//备案号
-    website_domain: "http://wangwenbo.me",//站点网址
+    icp_num: "16006848",//备案号
+    website_domain: "http://127.0.0.1:8360",//站点网址
     website_author_name: "咔花叔叔"//作者名字
   },
   /*
@@ -51,7 +51,7 @@ export default {
    */
   disqus: {
     dqs_on: true,//disqus开关
-    short_name: 'wwblocal',//disqus短名
+    short_name: 'wangwenbo',//disqus短名
     //disqus application info
     api_key: 'nXHXoex8H7nLQodiafaYwmTBR8KRZjwAjCpPqGqTMyUsGWe0CLcxL6tXOXcgPfyF',//公钥
     api_secret: '5UgeBUWOe3dmKf5FuivVTmBWHkkXMRVoCrPutgjjVLMbQ0CHQXHhW5AUgMLmESQQ',//密钥

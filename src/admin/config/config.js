@@ -6,7 +6,7 @@ export default {
   //key: value
   blog_name:"WANGWENBO.me",
   sub_title:"专注折腾",
-  icp_num:"12345678",
+  icp_num:"16006848",
   think_vision:think.version,
   nums_per_page: 6,
 
