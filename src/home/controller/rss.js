@@ -16,7 +16,7 @@ export default class extends Base {
     var rssConfig = think.config('rss');
     var siteConfig = think.config('blog_info');
 
-    if(!rssConfig.rss_switch){
+    if(!rssConfig.rss_on){
       return this._404Action();
     }
     let list = await this.modelInstance
@@ -26,7 +26,7 @@ export default class extends Base {
 
     let updateTime = await this.modelInstance
         .order('`lastdate` DESC')
-        .getField('lastdate', true);
+        .getField('lastdate', 1);
 
     this.assign('list', list);
     this.assign('updateTime', updateTime);

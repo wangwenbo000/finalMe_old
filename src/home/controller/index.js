@@ -30,7 +30,7 @@ export default class extends Base {
   }
 
   async articlelist(pn,listrows) {
-    var data = await this.modelInstance.cache(1800).where({"show":{"!=":0}}).page(pn, listrows).order({'show':'ASC','id':'DESC'}).countSelect();
+    var data = await this.modelInstance.where({"show":{"!=":0}}).page(pn, listrows).order({'show':'ASC','id':'DESC'}).countSelect();
 
     if(think.isEmpty(await this.session('dqsComments'))){
       var linkVar = 'link:'+this.objtoarr(data.data).join('&');

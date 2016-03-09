@@ -19,7 +19,7 @@ export default class extends Base {
 
   async itemAction(http){
     let routename=this.get('routename');
-    var list=await this.modelInstance.cache(routename, 1800).where({"routename": routename}).select();
+    var list=await this.modelInstance.where({"routename": routename}).select();
     list[0].content=list[0].content.replace(/<img src/gi, "<img src='/static/img/loading.gif' data-echo");
 
     let link='link:' + think.config('blog_info').website_domain + '/article/' + routename + '.html';
