@@ -15,50 +15,27 @@
                autofocus
         >
       </fieldset>
-      <fieldset class="form-group text-muted">
-        <span class="text-info"><i class="fa fa-anchor"></i>&nbsp;文章链接:</span>
-        http://wangwenbo.me/article/
-        <input type="text"
-               id="routename"
-               name="route"
-               placeholder="type&translate-title"
-               v-model="input.routename"
-               size="{{routeInputlength}}"
-        > .html
-        &nbsp;
-        <a href="javascript:;" @click="routeTrans">
-          <i class="fa fa-refresh"></i>
-        </a>
+      <fieldset class="form-group text-muted divider">
+        <Route></Route>
       </fieldset>
       <fieldset class="form-group text-muted">
-        <span class="text-info"><i class="fa fa-tags"></i>&nbsp;Tag:</span>
-        <span class="label label-default taglabel"
-              v-for="tag in tag.tagArr">
-          {{tag}}
-          <a href="javascript:;"
-             @click="delTag(tag)">
-            <i class="fa fa-times"></i>
-          </a>
-        </span>
-        <input type="text"
-               name="tagInput"
-               placeholder="输入文章关键词"
-               v-model="tag.nowInput"
-               @keyup.enter="tagInput">
+        <Tags></Tags>
       </fieldset>
-      <div class="row">
-        <div class="col-sm-10">
-          <script id="editor" name="content" type="text/plain"></script>
-        </div>
-        <div class="col-sm-2">
-          <Publish :lastdate.sync="input.lastdate" :pushdate.sync="input.date" :show.sync="input.show"></Publish>
-          <Category :categorycheck.sync="input.category"></Category>
-          <button type="submit"
-                  @click.stop.prevent="pushData"
-                  class="btn btn-success btn-lg form-control"><i class="fa fa-bicycle"></i> {{pushBtnStr}}
-          </button>
-        </div>
-      </div>
+      <fieldset class="form-group text-muted">
+        <div id="test-editormd"></div>
+      </fieldset>
+      <Publish :lastdate.sync="input.lastdate"
+               :pushdate.sync="input.date"
+               :show.sync="input.show">
+      </Publish>
+      <Category :categorycheck.sync="input.category"></Category>
+      <button type="submit"
+              @click.stop.prevent="pushData"
+              class="btn btn-success btn-lg form-control">
+        <i class="fa fa-bicycle"></i>
+        {{pushBtnStr}}
+      </button>
+
     </div>
   </div>
 </template>
@@ -66,6 +43,8 @@
 <script type="text/babel">
   import Publish from './publish.vue'
   import Category from './category.vue'
+  import Route from './route.vue'
+  import Tags from './tags.vue'
   import moment from 'moment'
   import Md5 from 'md5'
   import route from '../mixin/mixin_ctrAction';
@@ -88,72 +67,50 @@
         //配置百度翻译
         routeTransAPI: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
         appid: '20160218000012560',
-        key: 'NblJ36jLqoL8mKEsevzh',
+        key: 'NblJ36jLqoL8mKEsevzh'
       }
     },
     mixins: [route],
     components: {
       Publish,
       Category,
+      Route,
+      Tags
     },
     ready(){
-      //初始化编辑器
-      const _this = this;
-      this.ue = UE.getEditor(this.ueditorDom);
-      this.ue.ready(function () {
-        _this.ue.setContent(_this.input.content);
+      var content = this.input.content;
+      this.testEditor = editormd("test-editormd", {
+        width: "100%",
+        height: 760,
+        path: '/static/lib/editor/lib/',
+        markdown: '',
+        codeFold: true,
+        saveHTMLToTextarea: true,    // 保存 HTML 到 Textarea
+        searchReplace: true,
+        htmlDecode: "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启
+        //toolbar  : false,             //关闭工具栏
+        //previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
+        emoji: true,
+        taskList: true,
+        tocm: true,         // Using [TOCM]
+        flowChart: true,             // 开启流程图支持，默认关闭
+        sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
+        imageUpload: true,
+        imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+        imageUploadURL: "./php/upload.php",
+        onload: function () {
+          this.setMarkdown(content);
+        }
       });
-    },
-    destroyed(){
-      //页面跳转后销毁编辑器
-      this.ue.destroy();
-    },
-    computed: {
-      routeInputlength(){
-        return this.input.routename.length;
-      }
+
     },
     methods: {
       pushData(){
-        this.input.content = this.ue.getContent(this.input.content);
+        this.input.content = this.testEditor.getMarkdown();
         this.input.tags = this.tagArrCreate();
         this.$http.post(this.saveAPI, this.input).then(response=> {
           window.location.href = "#!/Artical";
         });
-      },
-      routeTrans(){
-        var salt = (new Date).getTime();
-        var str1 = this.appid + this.input.title + salt + this.key;
-        var sign = Md5(str1);
-        let transData = {
-          q: this.input.title,
-          appid: this.appid,
-          salt: salt,
-          from: 'auto',
-          to: 'en',
-          sign: sign
-        };
-        this.$http.jsonp(this.routeTransAPI, transData).then(response=> {
-          if (!response.data.error_code) {
-            let trans_Res = response.data.trans_result[0].dst.replace(/\s/g, "-");
-            trans_Res = trans_Res.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g, "");
-            this.$set("input.routename", trans_Res);
-          }
-        });
-      },
-      tagArrCreate(){
-        return this.tag.tagArr.join("|");
-      },
-      tagInput(){
-        if (this.tag.nowInput.replace(/\s/g, "") !== "") {
-          this.tag.tagArr.push(this.tag.nowInput);
-          this.$set("tag.nowInput", "");
-        } else {
-          return false;
-        }
-      },
-      delTag(tag){
-        this.tag.tagArr.$remove(tag);
       }
     }
   }
@@ -162,13 +119,19 @@
 <style lang="sass">
   input[name="route"], input[name="tagInput"] {
     border: none;
-    background-color: #FDFFC7;
+    background-color: #EFEFEF;
     outline: none;
     text-indent: 2px;
     padding: 0 5px;
     font-weight: 200;
   }
+
   .taglabel {
     margin-right: 2px;
+  }
+
+  .divider {
+    border-bottom: 1px solid #ccc;
+    padding: 0 0 10px;
   }
 </style>

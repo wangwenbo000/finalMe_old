@@ -5,7 +5,6 @@
     </div>
     <div class="card-block">
       <Fliter></Fliter>
-      <div class="dropdown-divider"></div>
       <table class="table table-striped table-hover">
         <thead>
         <tr>

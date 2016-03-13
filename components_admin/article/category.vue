@@ -1,22 +1,21 @@
 <template>
-  <div class="card">
-    <div class="card-header">
-      <i class="fa fa-cube"></i> 分类管理
-    </div>
-    <div class="card-block">
-      <h6 v-for="c in category">
-        <input type="radio" name="categorylist" value="{{c.name}}" v-model="categorycheck">&nbsp; {{c.name}}
-      </h6>
-    </div>
-    <div class="card-footer">
-      <button type="button" class="btn btn-secondary">
-        <i class="fa fa-plus"></i>
-      </button>
-      <button type="button" class="btn btn-secondary">
-        <i class="fa fa-wrench"></i> 管理
-      </button>
-    </div>
-  </div>
+  <table class="table table-bordered">
+    <thead class="thead-default">
+    <tr>
+      <th colspan="{{category.length-1}}"><i class="fa fa-cube"></i> 分类管理</th>
+      <th colspan=""><i class="fa fa-wrench"></i> 管理</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td v-for="c in category">
+        <span class="label label-default">
+          <input type="radio" name="categorylist" value="{{c.name}}" v-model="categorycheck">&nbsp; {{c.name}}
+          </span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </template>
 
 <script type="text/babel">

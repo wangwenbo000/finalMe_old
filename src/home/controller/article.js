@@ -2,6 +2,7 @@
 
 import Base from './base.js';
 import rp from 'request-promise';
+import marked from 'marked';
 
 export default class extends Base {
   /**
@@ -20,7 +21,18 @@ export default class extends Base {
   async itemAction(http){
     let routename=this.get('routename');
     var list=await this.modelInstance.where({"routename": routename}).select();
-    list[0].content=list[0].content.replace(/<img src/gi, "<img src='/static/img/loading.gif' data-echo");
+    marked.setOptions({
+      renderer: new marked.Renderer(),
+      gfm: true,
+      tables: true,
+      breaks: false,
+      pedantic: false,
+      sanitize: true,
+      smartLists: true,
+      smartypants: false
+    });
+    list[0].content = marked(list[0].content);
+    list[0].content=list[0].content.replace(/<img.+src/gi, "<img src='/static/img/loading.gif' data-echo");
 
     let link='link:' + think.config('blog_info').website_domain + '/article/' + routename + '.html';
     let session_name='dqs_' + list[0].id;
