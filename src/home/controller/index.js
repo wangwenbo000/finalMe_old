@@ -32,30 +32,10 @@ export default class extends Base {
   async articlelist(pn,listrows) {
     var data = await this.modelInstance.where({"show":{"!=":0}}).page(pn, listrows).order({'show':'ASC','id':'DESC'}).countSelect();
 
-    if(think.isEmpty(await this.session('dqsComments'))){
-      var linkVar = 'link:'+this.objtoarr(data.data).join('&');
-      let response = await this.dqs(linkVar);
-      let commentsCount = {};
-      for(var cc in response.response){
-        commentsCount[parseInt(response.response[cc].identifiers[0])]= response.response[cc].posts;
-      }
-      await this.session('dqsComments',commentsCount,1800);
-    }
-
     this.assign({
       blogname:think.config('blog_name',undefined,'admin'),
-      articleList: data,
-      commentsList: await this.session('dqsComments')
+      articleList: data
     });
     return this.display();
-  }
-
-  objtoarr(listdata){
-    var routeArr = [];
-    var localUrl = think.config('blog_info').website_domain;
-    listdata.forEach(function(r){
-      routeArr.push(localUrl +"/article/"+r.routename+".html");
-    });
-    return routeArr;
   }
 }
