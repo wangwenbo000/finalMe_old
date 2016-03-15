@@ -28,23 +28,29 @@ var router = new Router();
 router.map({
   '/': {
     name: 'Index',
-    component: Index
+    component: Index,
+    title:'后台管理首页'
   },
   '/Console': {
     name: 'console',
-    component: Index
+    component: Index,
+    title:'控制台'
   },
   '/Artical': {
     name: 'article',
-    component: Artical
+    component: Artical,
+    title:'文章列表'
+
   },
   '/Ctr/:newsId': {
     name: 'ctr',
-    component: Ctr
+    component: Ctr,
+    title:'撰写文章'
   },
   '/Setting':{
     name: 'setting',
-    component: Setting
+    component: Setting,
+    title:'站点设置'
   }
 });
 

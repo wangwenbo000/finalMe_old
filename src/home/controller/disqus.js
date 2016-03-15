@@ -35,8 +35,6 @@ export default class extends Base {
     for(var i in commentsCount){
       await this.model('article').where({id:parseInt(i)}).update({comment:parseInt(commentsCount[i.toString()])});
     }
-
-    console.log("更新完成");
   }
 
   mkFliterArr(routelist){

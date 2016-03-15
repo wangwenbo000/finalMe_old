@@ -61,7 +61,6 @@
         },
         actionName: '',
         //配置百度编辑器
-        ueditorDom: 'editor',
         getAPI: '/admin/article/get',
         saveAPI: '/admin/article/add',
         //配置百度翻译
@@ -81,7 +80,7 @@
       var content = this.input.content;
       this.testEditor = editormd("test-editormd", {
         width: "100%",
-        height: 760,
+        height: 660,
         path: '/static/lib/editor/lib/',
         markdown: '',
         codeFold: true,

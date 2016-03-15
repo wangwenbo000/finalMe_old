@@ -9,9 +9,7 @@
     <tbody>
     <tr>
       <td v-for="c in category">
-        <span class="label label-default">
           <input type="radio" name="categorylist" value="{{c.name}}" v-model="categorycheck">&nbsp; {{c.name}}
-          </span>
       </td>
     </tr>
     </tbody>

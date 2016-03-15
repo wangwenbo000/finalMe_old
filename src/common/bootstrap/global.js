@@ -41,11 +41,12 @@ global.tags2arr = function (tagArr) {
   return tagArr == null ? [] : tagArr.split("|");
 };
 
-global.getBlogTplInfo = function () {
-  return {
-    blogname:think.config('blog_name',undefined,'admin'),
-    subtitle:think.config('sub_title',undefined,'admin'),
-    icp:think.config('icp_num',undefined,'admin'),
-    tv:think.config('think_vision',undefined,'admin'),
-  }
-};
+//global.getBlogTplInfo = function () {
+//  let bi = think.config('blog_info');
+//  return {
+//    blogname:bi.blog_name,
+//    subtitle:bi.sub_title,
+//    icp:bi.icp_num,
+//    tv:think.version
+//  }
+//};

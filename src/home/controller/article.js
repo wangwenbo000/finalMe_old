@@ -5,17 +5,10 @@ import rp from 'request-promise';
 import marked from 'marked';
 
 export default class extends Base {
-  /**
-   * index action
-   * @return {Promise} []
-   */
+
   init(http){
     super.init(http);
     this.modelInstance=this.model('article');
-  }
-
-  async indexAction(http){
-
   }
 
   async itemAction(http){
@@ -35,7 +28,7 @@ export default class extends Base {
     list[0].content=list[0].content.replace(/<img.+src/gi, "<img src='/static/img/loading.gif' data-echo");
 
     this.assign({
-      "title": list[0].title,
+      "title": list[0].title+" | "+think.config('blog_info').blog_name,
       "articlelist": list[0],
       "suggestList": this.suggestlist(list[0].category, list[0].id),
       "p": this.pagination({">": list[0].id}, "ID ASC"),
@@ -48,8 +41,8 @@ export default class extends Base {
     var suggest=await this.modelInstance.where({
       "category": category,
       "id": {"!=": id}
-    }).page(0, 5).countSelect();
-    return suggest.data;
+    }).page(0, 5).select();
+    return suggest;
   }
 
   async pagination(action, order){
@@ -62,4 +55,5 @@ export default class extends Base {
       .countSelect();
     return data.count ? data.data[0] : false;
   }
+
 }

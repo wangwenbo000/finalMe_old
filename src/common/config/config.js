@@ -38,11 +38,13 @@ export default {
   },
 
   blog_info: {
-    blog_name: "WANGWENBO.me",//站点主标题
+    blog_name: "小博叔叔 Uncle little Bo",//站点主标题
     sub_title: "专注折腾",//副标题
     icp_num: "16006848",//备案号
     website_domain: "http://127.0.0.1:8360",//站点网址
-    website_author_name: "咔花叔叔"//作者名字
+    website_author_name: "咔花叔叔",//作者名字
+    description:"wangwenbo.me 学习记录",
+    keywords:"wangwenbo.me 记录 学习 javascript"
   },
   /*
   disqus评论

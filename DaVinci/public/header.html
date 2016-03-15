@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
-  <!--<script id="dsq-count-scr" src="//wangwenbo.disqus.com/count.js" async></script>-->
-  <title><%-getBlogTplInfo().blogname %></title>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+  <meta name="author" content="<%= page.author %>">
+  <meta name="description" content="<%= page.description%>">
+  <meta name="keywords" content="<%= page.keywords %>">
+  <link rel="alternate" href="/rss.html" title="<%= page.blogname %>" type="application/atom+xml">
+  <title><%=title%><%=page.blogname %></title>
 </head>
 <script>
   var vision = "CHANGE_VALUE_NO";
@@ -14,8 +17,8 @@
 <body>
 <div id="container">
   <header>
-    <h1><a href="/"><%-getBlogTplInfo().blogname %></a></h1>
-    <p class=subtitle>·&nbsp;<%-getBlogTplInfo().subtitle %></p>
+    <h1><a href="/"><%-page.blogname %></a></h1>
+    <p class=subtitle>·&nbsp;<%-page.subtitle %></p>
     <div class="sharegroup">
       <a href="/search.html" class="share search" title="search">搜索</a>
       <a href="https://github.com/wangwenbo000" target="_blank" class="share github" title="">github</a>

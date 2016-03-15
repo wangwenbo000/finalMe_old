@@ -5,13 +5,34 @@ export default class extends think.controller.base {
   /**
    * some base method in here
    */
-  gatherPost(list) {
-    let dateMap = {};
+  __before(http){
+    let bi=think.config('blog_info');
+    this.assign({
+      title: bi.blog_name,
+      page: {
+        blogname: bi.blog_name,
+        subtitle: bi.sub_title,
+        icp: bi.icp_num,
+        tv: think.version,
+        author:bi.website_author_name,
+        description:bi.description,
+        keywords:bi.keywords
+      }
+    });
+    console.log(this.http.controller);
+  }
 
-    list.forEach(post => {
-      let key = moment(post.date).format('YYYY-MM');
-      if (!dateMap[key]) {
-        dateMap[key] = {
+  __call(){
+    return false;
+  }
+
+  gatherPost(list){
+    let dateMap={};
+
+    list.forEach(post =>{
+      let key=moment(post.date).format('YYYY-MM');
+      if(!dateMap[key]){
+        dateMap[key]={
           date: moment(post.date).startOf('month'),
           list: []
         }
@@ -22,13 +43,13 @@ export default class extends think.controller.base {
     return Object.keys(dateMap).map(key => dateMap[key]);
   }
 
-  gatherCategories(categories) {
-    let dateMap = {};
+  gatherCategories(categories){
+    let dateMap={};
 
-    categories.forEach(cg => {
-      let key = cg.category;
-      if (!dateMap[key]) {
-        dateMap[key] = {
+    categories.forEach(cg =>{
+      let key=cg.category;
+      if(!dateMap[key]){
+        dateMap[key]={
           cate: cg.category,
           list: [],
           count: ''
@@ -36,25 +57,9 @@ export default class extends think.controller.base {
       }
 
       dateMap[key].list.push(cg);
-      dateMap[key].count = dateMap[key].list.length;
+      dateMap[key].count=dateMap[key].list.length;
     });
 
     return Object.keys(dateMap).map(key => dateMap[key]);
-  }
-
-  async dqs(link){
-    var options = {
-      method: 'GET',
-      uri: 'https://disqus.com/api/3.0/threads/list.json',
-      qs: {
-        api_key: 'nXHXoex8H7nLQodiafaYwmTBR8KRZjwAjCpPqGqTMyUsGWe0CLcxL6tXOXcgPfyF',
-        forum: think.config('disqus').short_name,
-        thread:link
-      },
-      json: true
-    };
-    var response = await rp(options);
-    //console.log(response);
-    return response
   }
 }
