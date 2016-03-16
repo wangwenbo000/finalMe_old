@@ -1,25 +1,15 @@
 <template>
   <div class="card">
     <div class="card-header">
-      <strong>{{actionName}}</strong>
+      <strong>{{$route.title}}</strong>
     </div>
     <div class="card-block">
-      <fieldset class="form-group">
-        <input type="text"
-               name="title"
-               class="form-control"
-               placeholder="请输入文章大标题"
-               v-model="input.title"
-               @input="routeTrans"
-               autocomplete="off"
-               autofocus
-        >
-      </fieldset>
-      <fieldset class="form-group text-muted divider">
-        <Route></Route>
-      </fieldset>
+      <Route :routename.sync="input.routename"
+             :title.sync="input.title">
+      </Route>
       <fieldset class="form-group text-muted">
-        <Tags></Tags>
+        <Tags :tags.sync="tag"
+              :mktagsstr.sync="input.tags"></Tags>
       </fieldset>
       <fieldset class="form-group text-muted">
         <div id="test-editormd"></div>
@@ -46,27 +36,27 @@
   import Route from './route.vue'
   import Tags from './tags.vue'
   import moment from 'moment'
-  import Md5 from 'md5'
   import route from '../mixin/mixin_ctrAction';
 
   export default{
     data(){
       return {
         input: {
-          content: ''
+          content: '',
+          show:'',
+          category:'',
+          lastdate: '',
+          date: '',
+          title: '',
+          routename: '',
+          tags: ''
         },
         tag: {
           nowInput: '',
           tagArr: []
         },
-        actionName: '',
-        //配置百度编辑器
         getAPI: '/admin/article/get',
-        saveAPI: '/admin/article/add',
-        //配置百度翻译
-        routeTransAPI: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
-        appid: '20160218000012560',
-        key: 'NblJ36jLqoL8mKEsevzh'
+        saveAPI: '/admin/article/add'
       }
     },
     mixins: [route],
@@ -87,8 +77,6 @@
         saveHTMLToTextarea: true,    // 保存 HTML 到 Textarea
         searchReplace: true,
         htmlDecode: "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启
-        //toolbar  : false,             //关闭工具栏
-        //previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
         emoji: true,
         taskList: true,
         tocm: true,         // Using [TOCM]
@@ -101,12 +89,10 @@
           this.setMarkdown(content);
         }
       });
-
     },
     methods: {
       pushData(){
         this.input.content = this.testEditor.getMarkdown();
-        this.input.tags = this.tagArrCreate();
         this.$http.post(this.saveAPI, this.input).then(response=> {
           window.location.href = "#!/Artical";
         });
@@ -114,23 +100,3 @@
     }
   }
 </script>
-
-<style lang="sass">
-  input[name="route"], input[name="tagInput"] {
-    border: none;
-    background-color: #EFEFEF;
-    outline: none;
-    text-indent: 2px;
-    padding: 0 5px;
-    font-weight: 200;
-  }
-
-  .taglabel {
-    margin-right: 2px;
-  }
-
-  .divider {
-    border-bottom: 1px solid #ccc;
-    padding: 0 0 10px;
-  }
-</style>

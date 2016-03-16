@@ -9,19 +9,25 @@
         <thead>
         <tr>
           <th><input type="checkbox"></th>
+          <th>#</th>
           <th>标题</th>
           <th>分类目录</th>
           <th>发布时间</th>
+          <th>评论</th>
           <th>操作</th>
         </tr>
         </thead>
         <tbody>
         <tr v-for="l in listData.data">
-          <th scope="row"><input type="checkbox"></th>
+          <th><input type="checkbox"></th>
+          <th scope="row">{{l.id}}</th>
           <td><span :class="[l.show == 0 && 'text-muted']" style="font-size: 16px;">{{{l.show | isShowIndex}}}</span> &nbsp;<strong><a
-                v-link="{name:'ctr',params:{newsId:l.id}}">{{l.title}}</a></strong></td>
+                v-link="{name:'ctr',params:{newsId:l.id}}">{{l.title}}</a></strong><br>
+            <small class="text-muted">{{l.routename}}</small>
+          </td>
           <td>{{l.category}}</td>
           <td>{{l.date | dateTime}}</td>
+          <td>{{l.comment}}</td>
           <td>
             <a href="javascript:;" @click="deleteItem(l,$index)">删除</a>
           </td>

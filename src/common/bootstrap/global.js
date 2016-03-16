@@ -3,13 +3,6 @@
  * you can define global functions used in controllers, models, templates
  */
 
-/**
- * use global.xxx to define global functions
- *
- * global.fn1 = function(){
- *     
- * }
- */
 import moment from 'moment';
 import marked from 'marked';
 
@@ -40,13 +33,3 @@ global.cutContent = function (content) {
 global.tags2arr = function (tagArr) {
   return tagArr == null ? [] : tagArr.split("|");
 };
-
-//global.getBlogTplInfo = function () {
-//  let bi = think.config('blog_info');
-//  return {
-//    blogname:bi.blog_name,
-//    subtitle:bi.sub_title,
-//    icp:bi.icp_num,
-//    tv:think.version
-//  }
-//};

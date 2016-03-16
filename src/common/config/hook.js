@@ -6,4 +6,5 @@
  */
 export default {
   //view_filter : ['append', 'debug_toolbar'],
+  request_begin: ["prepend", "force_proxy"]
 }

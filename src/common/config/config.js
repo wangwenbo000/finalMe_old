@@ -5,7 +5,7 @@
 export default {
   //key: value
   port: 8360, //服务监听的端口
-  host: "", //服务监听的 host
+  host: "127.0.0.1", //服务监听的 host
   encoding: "utf-8", //项目编码
   pathname_prefix: "",  //pathname 去除的前缀，路由解析中使用
   pathname_suffix: ".html", //pathname 去除的后缀，路由解析中使用

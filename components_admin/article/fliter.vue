@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-sm-6">
-      <a v-link="{name:'ctr',params:{newsId:'Write'}}" class="btn btn-warning">
+      <a v-link="{name:'ctr',params:{newsId:'Write'}}" class="btn btn-success">
         <i class="fa fa-pencil"></i> 撰写
       </a>
       <a v-link="{name:'ctr',params:{newsId:'Write'}}" class="btn btn-secondary btn-danger-outline">
@@ -20,7 +20,7 @@
     </div>
     <div class="col-sm-2">
       <select class="c-select form-control" v-model="input.catagory">
-        <option selected="selected">请選擇分类</option>
+        <option selected="selected">分类筛选</option>
         <option value="doing">正在做</option>
         <option value="Industy">行业动态</option>
         <option value="update">更新</option>

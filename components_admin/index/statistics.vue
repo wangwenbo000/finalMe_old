@@ -47,7 +47,7 @@
     computed: {
       serverLastDay(){
         var start = moment();
-        var end   = new Date(2016, 6, 18);
+        var end   = new Date(2017, 3, 8);
         return moment.range(start, end).diff('days');
       }
     }

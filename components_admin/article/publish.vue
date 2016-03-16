@@ -24,24 +24,26 @@
       <td>
         <input type="radio" value="3" v-model="show" name="showState">
       </td>
-      <td><h5 class="text-muted">{{lastdate}}</h5></td>
-      <td><h5 class="text-warning">{{pushdate}}</h5>
+      <td class="text-muted">{{lastdate}}</td>
+      <td class="text-warning">{{pushdate}}</td>
     </tr>
     </tbody>
   </table>
 </template>
 
 <script type="text/babel">
-  import moment from 'moment'
   export default{
     props: ['lastdate', 'pushdate', 'show'],
     ready(){
-      //初始化时间选择器
-//      $('#datetimepicker').datetimepicker();
+      var self = this;
       $("[name='showState']").bootstrapSwitch({
         onColor:'success',
         onText:'开',
-        offText:'关'
+        offText:'关',
+        size:'small'
+      });
+      $("[name='showState']").on('switchChange.bootstrapSwitch', function(event, state) {
+        self.$set('show',this.value);
       });
     }
   }

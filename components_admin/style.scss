@@ -75,3 +75,23 @@ input[name="title"]{
     }
   }
 }
+
+//文章撰写页面样式
+
+input[name="route"], input[name="tagInput"] {
+  border: none;
+  background-color: #EFEFEF;
+  outline: none;
+  text-indent: 2px;
+  padding: 0 5px;
+  font-weight: 200;
+}
+
+.divider {
+  border-bottom: 1px solid #ccc;
+  padding: 0 0 10px;
+}
+
+.taglabel {
+  margin-right: 2px;
+}

@@ -69,7 +69,7 @@ export default{
     deleteItem(item, index){
       var isDel = window.confirm('[' + item.id + ']' + '[' + item.title + ']' + " 将要被删除!");
       if (isDel) {
-        this.$http.post(this.delAPI, {id: item.id, filename: item.cover}).then(()=> {
+        this.$http.post(this.delAPI, {id: item.id}).then(()=> {
           this.listData.data.$remove(this.listData.data[index]);
         });
       }

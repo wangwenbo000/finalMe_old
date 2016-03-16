@@ -75,8 +75,6 @@
 
 <script type="text/babel">
   export default{
-    ready(){
-      $('#datetimepicker').datetimepicker();
-    }
+
   }
 </script>
