@@ -74,14 +74,14 @@ export default{
         });
       }
     },
-    getData(page){
+    getData(page, condition){
       page = parseInt(page);
       if (page > this.listData.totalPages || page <= 0) {
         alert("输入范围不符合要求");
         this.pagego = "";
         return false;
       }
-      this.$http.post(this.getAPI, {page: page}).then(response=> {
+      this.$http.post(this.getAPI, {page: page, condition: condition}).then(response=> {
         this.$set('listData', response.data.data);
       })
     }

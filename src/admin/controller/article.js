@@ -15,12 +15,19 @@ export default class extends Base {
     this.modelInstance = this.model('article');
   }
 
-  //查询
+  //查询&筛选
   async getAction() {
-    let id = this.post('id');
-    let pageIndex = this.post().page || 1;
-    if (think.isEmpty(id)) {
-      let data = await this.modelInstance.page(pageIndex, 20).order({'show':'ASC','id':'DESC'}).countSelect();
+    let pdata = this.post();
+    let pageIndex = this.post('page') || 1;
+    let condition = think.isEmpty(this.post('condition')) ? JSON.parse(this.post('condition')) : '*';
+    console.log(condition);
+    let shownum = think.config('admin_nums_per_page');
+    if (think.isEmpty(pdata.id)) {
+      let data = await this.modelInstance
+        .page(pageIndex, shownum)
+        .where(condition)
+        .order({'show': 'ASC', 'id': 'DESC'})
+        .countSelect();
       this.success(data);
     } else {
       let data = await this.modelInstance.where({id: id}).select();

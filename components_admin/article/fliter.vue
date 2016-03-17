@@ -13,9 +13,10 @@
       &nbsp;
       <div class="btn-group">
         <button type="button" class="btn btn-secondary active"><i class="fa fa-th"></i></button>
-        <button type="button" class="btn btn-secondary"><i class="fa fa-eye"></i></button>
-        <button type="button" class="btn btn-secondary"><i class="fa fa-eye-slash"></i></button>
-        <button type="button" class="btn btn-secondary"><i class="fa fa-arrow-up"></i></button>
+        <button type="button" class="btn btn-secondary" @click="fliterData({show:2})"><i class="fa fa-eye"></i></button>
+        <button type="button" class="btn btn-secondary" @click="fliterData({show:-1})"><i class="fa fa-eye-slash"></i></button>
+        <button type="button" class="btn btn-secondary" @click="fliterData({show:1})"><i class="fa fa-arrow-up"></i></button>
+        <button type="button" class="btn btn-secondary" @click="fliterData({show:3})"><i class="fa fa-file-o"></i></button>
       </div>
     </div>
     <div class="col-sm-2">
@@ -38,5 +39,16 @@
 </template>
 
 <script type="text/babel">
-
+export default{
+  props:['data','API'],
+  methods:{
+    fliterData(condition){
+      console.log(JSON.stringify(condition));
+      this.$http.post(this.API, {condition:JSON.stringify(condition)}).then(response=> {
+        console.log(response.data.data);
+        this.$set('data',response.data.data.data);
+      });
+    }
+  }
+}
 </script>
