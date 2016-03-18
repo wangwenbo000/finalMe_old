@@ -2,7 +2,7 @@
   <table class="table table-striped table-hover">
     <thead>
     <tr>
-      <th><input type="checkbox"></th>
+      <th class="check"><input type="checkbox"></th>
       <th>#</th>
       <th>状态</th>
       <th>标题</th>
@@ -14,7 +14,7 @@
     </thead>
     <tbody>
     <tr v-for="l in data">
-      <th><input type="checkbox"></th>
+      <th class="check"><input type="checkbox" name="delcheck[{{$index}}]"></th>
       <th scope="row">{{l.id}}</th>
       <td>
         <span :class="[l.show == 0 && 'text-muted']" style="font-size: 16px;">{{{l.show | isShowIndex}}}</span>
@@ -40,6 +40,13 @@
 <script type="text/babel">
 export default{
   props:['data'],
+  ready(){
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-red',
+      radioClass: 'iradio_square-red',
+      increaseArea: '20%' // optional
+    });
+  },
   filters: {
     isShowIndex(value){
       switch (value) {

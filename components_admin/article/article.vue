@@ -42,6 +42,9 @@
         checkId: [],
       }
     },
+    ready(){
+
+    },
     components: {
       Fliter,
       List
