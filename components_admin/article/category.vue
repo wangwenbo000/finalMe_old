@@ -28,9 +28,6 @@
       this.$http.post(this.categoryAPI).then(response=> {
         this.$set("category", response.data.data);
       });
-    },
-    methods: {
-
     }
   }
 </script>

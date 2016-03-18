@@ -95,3 +95,35 @@ input[name="route"], input[name="tagInput"] {
 .taglabel {
   margin-right: 2px;
 }
+
+.chk {
+  display: none;
+}
+
+.chk + label {
+  background-color: #FFF;
+  border: 1px solid #C1CACA;
+  width: 24px;
+  height: 24px;
+  display: block;
+  position: relative;
+  margin-bottom: 0;
+}
+.chk + label:active {
+  box-shadow: 0 1px 2px rgba(242,34,34,.05), inset 0px 1px 3px rgba(242,34,34,0.1);
+}
+
+.chk:checked + label {
+  border: 3px solid #f22222;
+  color: #243441;
+}
+
+.chk:checked + label:after {
+  content: '\25a0'; //勾选符号
+  display: block;
+  height: 100%;
+  line-height: 13px;
+  text-align: center;
+  color: #f22222;
+  font-size: 1.6em;
+}

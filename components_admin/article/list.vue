@@ -2,10 +2,13 @@
   <table class="table table-striped table-hover">
     <thead>
     <tr>
-      <th class="check"><input type="checkbox"></th>
+      <th class="check">
+        <input type="checkbox" class="chk" id="checkbox">
+        <label for="checkbox"></label>
+      </th>
       <th>#</th>
       <th>状态</th>
-      <th>标题</th>
+      <th>标题 <span class="label label-primary">所有文章</span></th>
       <th>分类目录</th>
       <th>发布时间</th>
       <th>评论</th>
@@ -14,7 +17,10 @@
     </thead>
     <tbody>
     <tr v-for="l in data">
-      <th class="check"><input type="checkbox" name="delcheck[{{$index}}]"></th>
+      <th>
+        <input type="checkbox" class="chk" id="{{l.id}}" v-model="chkname" value="{{l.id}}">
+        <label for="{{l.id}}"></label>
+      </th>
       <th scope="row">{{l.id}}</th>
       <td>
         <span :class="[l.show == 0 && 'text-muted']" style="font-size: 16px;">{{{l.show | isShowIndex}}}</span>
@@ -23,7 +29,7 @@
         <strong>
           <a v-link="{name:'ctr',params:{newsId:l.id}}">{{l.title}}</a>
         </strong><br>
-        <small class="text-muted"><i class="fa fa-caret-right"></i>&nbsp;{{l.routename}}</small>
+        <small><i class="fa fa-caret-right"></i>&nbsp;{{l.routename}}</small>
       </td>
 
       <td>{{l.category}}</td>
@@ -39,14 +45,7 @@
 
 <script type="text/babel">
 export default{
-  props:['data'],
-  ready(){
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-red',
-      radioClass: 'iradio_square-red',
-      increaseArea: '20%' // optional
-    });
-  },
+  props:['data','chkname'],
   filters: {
     isShowIndex(value){
       switch (value) {

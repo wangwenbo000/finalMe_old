@@ -12,15 +12,25 @@
       </a>
       &nbsp;
       <div class="btn-group">
-        <button type="button" class="btn btn-secondary active"
+        <button type="button"
+                @mouseup="tab='all'"
+                :class="['btn', tab === 'all' ? active : normal]"
                 @click="fliterData()"><i class="fa fa-th"></i></button>
-        <button type="button" class="btn btn-secondary"
+        <button type="button"
+                @mouseup="tab='2'"
+                :class="['btn', tab === '2' ? active : normal]"
                 @click="fliterData({show:2})"><i class="fa fa-eye"></i></button>
-        <button type="button" class="btn btn-secondary"
+        <button type="button"
+                @mouseup="tab='0'"
+                :class="['btn', tab === '0' ? active : normal]"
                 @click="fliterData({show:0})"><i class="fa fa-eye-slash"></i></button>
-        <button type="button" class="btn btn-secondary"
+        <button type="button"
+                @mouseup="tab='1'"
+                :class="['btn', tab === '1' ? active : normal]"
                 @click="fliterData({show:1})"><i class="fa fa-arrow-up"></i></button>
-        <button type="button" class="btn btn-secondary"
+        <button type="button"
+                @mouseup="tab='3'"
+                :class="['btn', tab === '3' ? active : normal]"
                 @click="fliterData({show:3})"><i class="fa fa-file-o"></i></button>
       </div>
     </div>
@@ -53,7 +63,10 @@ export default{
       getcateAPI: '/admin/article/category',
       searchText:'',
       selected:'',
-      select:[]
+      select:[],
+      tab:'all',
+      active:'btn-success',
+      normal:'btn-secondary-outline'
     }
   },
   ready(){
@@ -72,9 +85,9 @@ export default{
     fliterData(condition){
       this.condition = condition;
       this.$http.post(this.API, {condition:JSON.stringify(condition)}).then(response=> {
-        console.log(response.data.data);
         this.$set('data',response.data.data);
         this.$dispatch('bootpag');
+//        this.$dispatch('checkbox');
       });
     }
   }

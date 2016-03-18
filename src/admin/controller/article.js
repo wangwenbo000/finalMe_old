@@ -30,7 +30,7 @@ export default class extends Base {
           .countSelect();
       this.success(data);
     } else {
-      let data = await this.modelInstance.where({id: id}).select();
+      let data = await this.modelInstance.where({id: pdata.id}).select();
       this.success(data);
     }
   }
