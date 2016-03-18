@@ -12,26 +12,33 @@
       </a>
       &nbsp;
       <div class="btn-group">
-        <button type="button" class="btn btn-secondary active"><i class="fa fa-th"></i></button>
-        <button type="button" class="btn btn-secondary" @click="fliterData({show:2})"><i class="fa fa-eye"></i></button>
-        <button type="button" class="btn btn-secondary" @click="fliterData({show:-1})"><i class="fa fa-eye-slash"></i></button>
-        <button type="button" class="btn btn-secondary" @click="fliterData({show:1})"><i class="fa fa-arrow-up"></i></button>
-        <button type="button" class="btn btn-secondary" @click="fliterData({show:3})"><i class="fa fa-file-o"></i></button>
+        <button type="button" class="btn btn-secondary active"
+                @click="fliterData()"><i class="fa fa-th"></i></button>
+        <button type="button" class="btn btn-secondary"
+                @click="fliterData({show:2})"><i class="fa fa-eye"></i></button>
+        <button type="button" class="btn btn-secondary"
+                @click="fliterData({show:0})"><i class="fa fa-eye-slash"></i></button>
+        <button type="button" class="btn btn-secondary"
+                @click="fliterData({show:1})"><i class="fa fa-arrow-up"></i></button>
+        <button type="button" class="btn btn-secondary"
+                @click="fliterData({show:3})"><i class="fa fa-file-o"></i></button>
       </div>
     </div>
     <div class="col-sm-2">
-      <select class="c-select form-control" v-model="input.catagory">
-        <option selected="selected">分类筛选</option>
-        <option value="doing">正在做</option>
-        <option value="Industy">行业动态</option>
-        <option value="update">更新</option>
+      <select class="c-select form-control"
+              v-model="selected"
+              @change="fliterData({category:selected})">
+        <option selected="selected" value="*">所有分类</option>
+        <option v-for="s in select"
+                :value="s.name">{{s.name}}</option>
       </select>
     </div>
     <div class="col-sm-4">
       <div class="form-group">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="文章标题关键字">
-          <a v-link="{name:'ctr',params:{newsId:'upload'}}" class="btn btn-primary btn-sm text-right input-group-addon"><i class="fa fa-filter"></i> 筛选</a>
+          <input type="text" class="form-control" placeholder="文章标题关键字" v-model="searchText">
+          <a class="btn btn-primary btn-sm text-right input-group-addon"
+             @click="searchCondition()"><i class="fa fa-filter"></i> 筛选</a>
         </div>
       </div>
     </div>
@@ -40,13 +47,34 @@
 
 <script type="text/babel">
 export default{
-  props:['data','API'],
+  props:['data','API','condition'],
+  data(){
+    return{
+      getcateAPI: '/admin/article/category',
+      searchText:'',
+      selected:'',
+      select:[]
+    }
+  },
+  ready(){
+    this.$http.post(this.getcateAPI).then(response=> {
+      this.$set('select',response.data.data);
+    });
+  },
   methods:{
+    searchCondition(){
+      let arr=this.searchText.split(',');
+      for(var i in arr){
+        arr[i] = '%'+arr[i]+'%';
+      }
+      this.fliterData({title: ["like", arr]});
+    },
     fliterData(condition){
-      console.log(JSON.stringify(condition));
+      this.condition = condition;
       this.$http.post(this.API, {condition:JSON.stringify(condition)}).then(response=> {
         console.log(response.data.data);
-        this.$set('data',response.data.data.data);
+        this.$set('data',response.data.data);
+        this.$dispatch('bootpag');
       });
     }
   }

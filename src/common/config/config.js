@@ -73,7 +73,7 @@ export default {
 
   think_vision: think.version,//thinkjs版本
   nums_per_page: 6,//每页显示文章数
-  admin_nums_per_page: 2,//后台每页显示文章数
+  admin_nums_per_page: 6,//后台每页显示文章数
 
   admin_title: "FinalMe AdminPanel",//后台名
   server_start_time: "2015/6/18"//服务器购入时间

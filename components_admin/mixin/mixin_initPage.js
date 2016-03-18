@@ -36,29 +36,7 @@ export default{
     }
   },
   ready(){
-    var self = this;
-    $('#pagination').bootpag({
-      total: this.listData.totalPages,
-      page: this.listData.currentPage,
-      maxVisible: 5,
-      leaps: true,
-      firstLastUse: true,
-      first: '<i class="fa fa-angle-double-left"></i>',
-      last: '<i class="fa fa-angle-double-right"></i>',
-      wrapClass: 'pagination',
-      activeClass: 'active',
-      disabledClass: 'disabled',
-      nextClass: 'next',
-      prevClass: 'prev',
-      lastClass: 'last',
-      firstClass: 'first'
-    }).on("page", function (event, num) {
-      self.getData(num);
-      $(this).bootpag({
-        total: self.listData.totalPages,
-        maxVisible: 5
-      });
-    });
+    this.bootpag();
   },
   filters: {
     dateTime(value){
@@ -66,6 +44,31 @@ export default{
     }
   },
   methods: {
+    bootpag(){
+      var self = this;
+      $('#pagination').bootpag({
+        total: this.listData.totalPages,
+        page: this.listData.currentPage,
+        maxVisible: 5,
+        leaps: true,
+        firstLastUse: true,
+        first: '<i class="fa fa-angle-double-left"></i>',
+        last: '<i class="fa fa-angle-double-right"></i>',
+        wrapClass: 'pagination',
+        activeClass: 'active',
+        disabledClass: 'disabled',
+        nextClass: 'next',
+        prevClass: 'prev',
+        lastClass: 'last',
+        firstClass: 'first'
+      }).on("page", function (event, num) {
+        self.getData(num, self.condition);
+        $(this).bootpag({
+          total: self.listData.totalPages,
+          maxVisible: 5
+        });
+      });
+    },
     deleteItem(item, index){
       var isDel = window.confirm('[' + item.id + ']' + '[' + item.title + ']' + " 将要被删除!");
       if (isDel) {
@@ -81,7 +84,7 @@ export default{
         this.pagego = "";
         return false;
       }
-      this.$http.post(this.getAPI, {page: page, condition: condition}).then(response=> {
+      this.$http.post(this.getAPI, {page: page, condition: JSON.stringify(condition)}).then(response=> {
         this.$set('listData', response.data.data);
       })
     }

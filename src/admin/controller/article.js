@@ -19,15 +19,15 @@ export default class extends Base {
   async getAction() {
     let pdata = this.post();
     let pageIndex = this.post('page') || 1;
-    let condition = think.isEmpty(this.post('condition')) ? JSON.parse(this.post('condition')) : '*';
+    let condition = think.isEmpty(this.post('condition')) ? '' : JSON.parse(this.post('condition'));
     console.log(condition);
     let shownum = think.config('admin_nums_per_page');
     if (think.isEmpty(pdata.id)) {
       let data = await this.modelInstance
-        .page(pageIndex, shownum)
-        .where(condition)
-        .order({'show': 'ASC', 'id': 'DESC'})
-        .countSelect();
+          .page(pageIndex, shownum)
+          .where(condition)
+          .order({'show': 'ASC', 'id': 'DESC'})
+          .countSelect();
       this.success(data);
     } else {
       let data = await this.modelInstance.where({id: id}).select();
@@ -48,6 +48,11 @@ export default class extends Base {
     }
   }
 
+  //获取分类
+  async categoryAction(){
+    let category = await this.model('category').field('name').select();
+    this.success(category);
+  }
   //删除
   async delAction() {
     let delNews = await this.modelInstance.where({id: this.post().id}).delete();

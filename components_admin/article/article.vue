@@ -4,7 +4,11 @@
       <i class="fa fa-th-list"></i> 文章列表
     </div>
     <div class="card-block">
-      <Fliter :data.sync="listData.data" :API.sync="getAPI"></Fliter>
+      <Fliter :data.sync="listData"
+              :API.sync="getAPI"
+              :condition.sync="condition"
+              v-on:bootpag="bootpag">
+      </Fliter>
       <List :data.sync="listData.data"></List>
       <div class="alert alert-info text-center" role="alert" v-show="showEmptyAlert">
         <strong>人生在勤!</strong> 到目前为止你还没有发布过一篇文章:/ &nbsp;&nbsp;
@@ -33,9 +37,9 @@
       return {
         getAPI: '/admin/article/get',
         delAPI: '/admin/article/del',
-        condition:'',
+        condition: '',
         listData: {},
-        checkId: []
+        checkId: [],
       }
     },
     components: {
