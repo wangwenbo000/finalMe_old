@@ -7,11 +7,16 @@
       <Fliter :data.sync="listData"
               :API.sync="getAPI"
               :condition.sync="condition"
+              :chkid.sync="checkId"
               v-on:bootpag="bootpag"
       >
       </Fliter>
       <List :data.sync="listData.data"
-            :chkname.sync="checkedNames"></List>
+            :chkall.sync="checkAll"
+            :chked.sync="checked"
+            :chkarr.sync="checkId"
+            :tab.sync="tab"
+      ></List>
       <div class="alert alert-info text-center" role="alert" v-show="showEmptyAlert">
         <strong>人生在勤!</strong> 到目前为止你还没有发布过一篇文章:/ &nbsp;&nbsp;
         <a v-link="{name:'ctr',params:{newsId:'upload'}}" class="btn btn-success btn-sm">发布第一条记录！</a>
@@ -38,15 +43,12 @@
     data(){
       return {
         getAPI: '/admin/article/get',
-        delAPI: '/admin/article/del',
         condition: '',
         listData: {},
         checkId: [],
-        checkedNames:[]
+        checkAll:false,
+        checked: {}
       }
-    },
-    ready(){
-
     },
     components: {
       Fliter,

@@ -70,10 +70,18 @@ export default {
     appid: '20160218000012560',
     key: 'NblJ36jLqoL8mKEsevzh',
   },
+  /*
+   七牛
+   */
+  qiniu:{
+    Access_Key:'NDCsvyXGEJjqMUF9LlN7U4MpaJ5vfxbQlXQnEjfZ',
+    Secret_Key:'7Gtw1Ic-7NVW9aeRGUHrN6E6Ik3vVzGbS8OCOnKm',
+    Bucket_Name:'wangwenbo-me'
+  },
 
   think_vision: think.version,//thinkjs版本
   nums_per_page: 6,//每页显示文章数
-  admin_nums_per_page: 6,//后台每页显示文章数
+  admin_nums_per_page: 16,//后台每页显示文章数
 
   admin_title: "FinalMe AdminPanel",//后台名
   server_start_time: "2015/6/18"//服务器购入时间

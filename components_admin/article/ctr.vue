@@ -72,7 +72,7 @@
         width: "100%",
         height: 660,
         path: '/static/lib/editor/lib/',
-        markdown: '',
+        markdown: content,
         codeFold: true,
         saveHTMLToTextarea: true,    // 保存 HTML 到 Textarea
         searchReplace: true,
@@ -84,7 +84,7 @@
         sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
         imageUpload: true,
         imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-        imageUploadURL: "./php/upload.php",
+        imageUploadURL: "/admin/article/upload",
         onload: function () {
           this.setMarkdown(content);
         }

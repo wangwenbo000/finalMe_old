@@ -7,7 +7,9 @@
           <Slider></Slider>
         </div>
         <div class="col-xs-11 admin-panel">
-          <router-view transition="fade" transition-mode="out-in" :statistics="globaldata.statistics"></router-view>
+          <router-view transition="fade" transition-mode="out-in"
+                       :statistics="globaldata.statistics"
+          ></router-view>
         </div>
       </div>
     </div>

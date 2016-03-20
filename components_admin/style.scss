@@ -96,6 +96,14 @@ input[name="route"], input[name="tagInput"] {
   margin-right: 2px;
 }
 
+.alist{
+  -webkit-transition: background-color .3s;
+  -moz-transition: background-color .3s;
+  -ms-transition: background-color .3s;
+  -o-transition: background-color .3s;
+  transition: background-color .3s;
+}
+
 .chk {
   display: none;
 }
@@ -108,9 +116,20 @@ input[name="route"], input[name="tagInput"] {
   display: block;
   position: relative;
   margin-bottom: 0;
+  -webkit-transition: border-color .3s;
+  -moz-transition: border-color .3s;
+  -ms-transition: border-color .3s;
+  -o-transition: border-color .3s;
+  transition: border-color .3s;
 }
 .chk + label:active {
   box-shadow: 0 1px 2px rgba(242,34,34,.05), inset 0px 1px 3px rgba(242,34,34,0.1);
+}
+
+.chk + label:hover {
+  border: 3px solid #f22222;
+  width: 24px;
+  height: 24px;
 }
 
 .chk:checked + label {

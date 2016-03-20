@@ -54,11 +54,11 @@ module.exports={
   plugins: [
     new ExtractTextPlugin('/static/css/[name].style.css'),
     //进入生产环境
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
+    //new webpack.DefinePlugin({
+    //  'process.env': {
+    //    NODE_ENV: '"production"'
+    //  }
+    //}),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false

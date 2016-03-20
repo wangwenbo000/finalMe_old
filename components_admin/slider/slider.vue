@@ -20,15 +20,12 @@
        class="list-group-item">
       <i class="fa fa-cog"></i> 设置
     </a>
+  </div>
+
+  <div class="list-group sliderBar">
     <a href="/admin/login/logout"
        class="list-group-item">
       <i class="fa fa-power-off"></i> 退出
     </a>
   </div>
 </template>
-
-<script type="text/babel">
-  export default{
-
-  }
-</script>

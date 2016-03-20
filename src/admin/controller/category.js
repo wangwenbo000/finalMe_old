@@ -14,8 +14,7 @@ export default class extends Base {
    * @return {Promise} []
    */
   async indexAction() {
-    let category_model = this.model('category');
-    let categorylist = await category_model.select();
-    this.success(categorylist)
+    let category = await this.model('category').field('name').select();
+    this.success(category)
   }
 }

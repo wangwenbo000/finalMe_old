@@ -4,10 +4,14 @@
       <a v-link="{name:'ctr',params:{newsId:'Write'}}" class="btn btn-success">
         <i class="fa fa-pencil"></i> 撰写
       </a>
-      <a v-link="{name:'ctr',params:{newsId:'Write'}}" class="btn btn-secondary btn-danger-outline">
+      <a class="btn btn-secondary btn-danger-outline"
+         @click="deleteItem">
         <span><i class="fa fa-trash-o"></i> 删除</span>
       </a>
-      <a v-link="{name:'ctr',params:{newsId:'upload'}}" class="btn btn-secondary">
+      <a :class="['btn', tab === '4' ? 'btn-warning' : 'btn-warning-outline']"
+         @mouseup="tab='4'"
+         @click="fliterData({show:4})"
+      >
         <i class="fa fa-file-text-o"></i> 草稿箱
       </a>
       &nbsp;
@@ -57,10 +61,11 @@
 
 <script type="text/babel">
 export default{
-  props:['data','API','condition'],
+  props:['data','API','condition','chkid'],
   data(){
     return{
-      getcateAPI: '/admin/article/category',
+      getcateAPI: '/admin/category/index',
+      delAPI: '/admin/article/del',
       searchText:'',
       selected:'',
       select:[],
@@ -82,12 +87,20 @@ export default{
       }
       this.fliterData({title: ["like", arr]});
     },
+    deleteItem(){
+      if(!this.chkid.length) return false;
+      var isDel = window.confirm("确定删除已选择文章?");
+      if (isDel) {
+        this.$http.post(this.delAPI, {idarr: JSON.stringify(this.chkid)}).then(()=> {
+//          this.listData.data.$remove(this.listData.data[index]);
+        });
+      }
+    },
     fliterData(condition){
       this.condition = condition;
       this.$http.post(this.API, {condition:JSON.stringify(condition)}).then(response=> {
         this.$set('data',response.data.data);
         this.$dispatch('bootpag');
-//        this.$dispatch('checkbox');
       });
     }
   }
