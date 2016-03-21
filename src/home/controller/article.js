@@ -2,7 +2,6 @@
 
 import Base from './base.js';
 import rp from 'request-promise';
-import marked from 'marked';
 
 export default class extends Base {
 
@@ -14,18 +13,37 @@ export default class extends Base {
   async itemAction(http){
     let routename=this.get('routename');
     var list=await this.modelInstance.where({"routename": routename}).select();
-    marked.setOptions({
-      renderer: new marked.Renderer(),
-      gfm: true,
-      tables: true,
-      breaks: false,
-      pedantic: false,
-      sanitize: true,
-      smartLists: true,
-      smartypants: false
+
+    var hljs = require('highlight.js');
+    var md = require('markdown-it')({
+      html: true,
+      linkify: true,
+      typography: true,
+      highlight: function (str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          try {
+            return '<pre class="hljs"><code>' +
+              hljs.highlight(lang, str, true).value +
+              '</code></pre>';
+          } catch (__) {}
+        }
+        return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+      }
     });
-    list[0].content = marked(list[0].content);
-    list[0].content=list[0].content.replace(/<img.+src/gi, "<img src='/static/img/loading.gif' data-echo");
+    md.use(require('markdown-it-imsize'), { autofill: true });
+    list[0].content = md.render(list[0].content);
+    //marked.setOptions({
+    //  renderer: new marked.Renderer(),
+    //  gfm: true,
+    //  tables: true,
+    //  breaks: false,
+    //  pedantic: false,
+    //  sanitize: true,
+    //  smartLists: true,
+    //  smartypants: false
+    //});
+    //list[0].content = marked(list[0].content);
+    //list[0].content=list[0].content.replace(/<img.+src/gi, "<img src='/static/img/loading.gif' data-echo");
 
     this.assign({
       "title": list[0].title+" | "+think.config('blog_info').blog_name,
