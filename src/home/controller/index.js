@@ -17,7 +17,7 @@ export default class extends Base {
     var pn=this.get('pn');
     var listrows=think.config('nums_per_page');
     var pnTotal=await this.modelInstance
-      .where({"show": {"!=": 0}})
+      .where({"show": ["!=",0,4]})
       .count();
 
     var pnPosition=pn>Math.ceil(pnTotal / listrows) ? false : true;
@@ -27,7 +27,7 @@ export default class extends Base {
 
   async articlelist(pn, listrows, pnPosition){
     var data=await this.modelInstance
-      .where({"show": {"!=": 0}})
+      .where({"show": ["!=",0,4]})
       .page(pn, listrows)
       .order({'show': 'ASC', 'id': 'DESC'})
       .countSelect(pnPosition);

@@ -38,7 +38,7 @@ a {
 }
 
 #container {
-  max-width: 1200px;
+  max-width: 1020px;
   min-width: 320px;
   margin: 20px auto;
   background-color: #FFF;
@@ -173,6 +173,9 @@ article {
     text-align: justify;
     img {
       max-width: 100%;
+      border: 1px solid #efefef;
+      padding: 3px;
+      background: #f8f8f8;
     }
     p {
       a {
@@ -218,6 +221,8 @@ article {
       color: #A9A9A9;
       text-align: center;
       margin-top: 10px;
+      padding-top: 12px;
+      border-top:1px dashed #efefef;
       a[rel="license"] {
         vertical-align: middle;
       }
@@ -523,6 +528,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   color: #828282;
   background: #f8f8f8;
   font-size: 14px;
+  line-height: 1.4;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 }
 
 .hljs-comment,

@@ -50,7 +50,12 @@ router.map({
   '/Setting':{
     name: 'setting',
     component: Setting,
-    title:'站点设置'
+    title:'站点设置',
+    //subRoutes: {
+    //  '/bar': {
+    //    component: Bar
+    //  }
+    //}
   }
 });
 

@@ -3,7 +3,30 @@
     <div class="card-header">
       <i class="fa fa-cog"></i> 设置
     </div>
+
     <div class="card-block">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" href="#home" role="tab" data-toggle="tab">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#profile" role="tab" data-toggle="tab">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#messages" role="tab" data-toggle="tab">Messages</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#settings" role="tab" data-toggle="tab">Settings</a>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <P>S</P>
+        <router-view transition="fade" transition-mode="out-in"></router-view>
+      </div>
+
+
       <form>
         <h4><i class="fa fa-diamond"></i> 站点</h4>
         <fieldset class="form-group">
