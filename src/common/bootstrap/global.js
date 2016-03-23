@@ -4,7 +4,7 @@
  */
 
 import moment from 'moment';
-import marked from 'marked';
+import md from 'markdown-it';
 
 global.formatTime = function (time, str) {
   str == null ? str = "ll" : str;
@@ -12,17 +12,14 @@ global.formatTime = function (time, str) {
 };
 
 global.cutContent = function (content) {
-  marked.setOptions({
-    renderer: new marked.Renderer(),
-    gfm: true,
-    tables: true,
+  var md = require('markdown-it')({
+    html: true,
+    linkify: true,
+    typography: true,
     breaks: false,
-    pedantic: false,
-    sanitize: true,
-    smartLists: true,
-    smartypants: false
-  });
-  let contentWithoutHTMLTag = marked(content).replace(/<[^>]+>/g, "");
+    });
+  md.use(require('markdown-it-emoji'));
+  let contentWithoutHTMLTag = md.render(content).replace(/<[^>]+>/g, "");
   if (contentWithoutHTMLTag.length > 200) {
     return contentWithoutHTMLTag.substring(0, 200) + "[...]";
   } else {

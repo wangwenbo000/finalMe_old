@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-dark bg-primary navbar-fixed-top">
-    <a class="navbar-brand" href="/admin#!/">:: WWB's AdminPanel ::</a>
+    <a class="navbar-brand" href="/admin#!/">{{adminTitle}}</a>
     <ul class="nav navbar-nav pull-right">
       <li class="nav-item active">
         <div class="dropdown">
@@ -30,6 +30,6 @@
 
 <script type="text/babel">
   export default{
-    props:["adminInfo"]
+    props:["adminInfo","adminTitle"]
   }
 </script>

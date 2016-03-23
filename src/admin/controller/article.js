@@ -23,7 +23,8 @@ export default class extends Base {
     let pageIndex=this.post('page') || 1;
     let condition=think.isEmpty(this.post('condition')) ? '' : JSON.parse(this.post('condition'));
     console.log(condition);
-    let shownum=think.config('admin_nums_per_page');
+    let shownum=await this.model('config').cache(3600).field('a_perpage').select();
+    shownum = shownum.a_perpage;
     if(think.isEmpty(pdata.id)){
       let data=await this.modelInstance
         .page(pageIndex, shownum)

@@ -61,7 +61,7 @@
 
 <script type="text/babel">
 export default{
-  props:['data','API','condition','chkid'],
+  props:['data','API','condition','chkid','fsl'],
   data(){
     return{
       getcateAPI: '/admin/category/index',
@@ -97,9 +97,11 @@ export default{
       }
     },
     fliterData(condition){
+      this.$set('fsl',true);
       this.condition = condition;
       this.$http.post(this.API, {condition:JSON.stringify(condition)}).then(response=> {
         this.$set('data',response.data.data);
+        this.$set('fsl',false);
         this.$dispatch('bootpag');
       });
     }

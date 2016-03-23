@@ -6,7 +6,6 @@
 
 import Base from './base.js';
 import rp from 'request-promise';
-import crontab from 'node-crontab'
 
 export default class extends Base {
 

@@ -5,34 +5,39 @@ export default class extends think.controller.base {
   /**
    * some base method in here
    */
-  __before(http){
-    let bi=think.config('blog_info');
-    this.assign({
-      title: bi.blog_name,
+  async __before(http) {
+    let config_model = this.model('config');
+    let article_model = this.model('article');
+    let new_title = await article_model.cache(3600).field('title').order('id DESC').find();
+    let bi = await config_model.cache(3600).select();
+    bi[0].na = new_title.title;
+    let configSession = bi[0];
+    return this.assign({
+      title: configSession.sitetitle,
       page: {
-        blogname: bi.blog_name,
-        subtitle: bi.sub_title,
-        icp: bi.icp_num,
+        blogname: configSession.sitetitle,
+        subtitle: configSession.subtitle,
+        icp: configSession.icpnum,
         tv: think.version,
-        author:bi.website_author_name,
-        description:bi.description,
-        keywords:bi.keywords
+        author: configSession.author,
+        description: configSession.description,
+        keywords: configSession.keywords,
+        na:configSession.na
       }
     });
-    console.log(this.http.controller);
   }
 
-  __call(){
+  __call() {
     return false;
   }
 
-  gatherPost(list){
-    let dateMap={};
+  gatherPost(list) {
+    let dateMap = {};
 
-    list.forEach(post =>{
-      let key=moment(post.date).format('YYYY-MM');
-      if(!dateMap[key]){
-        dateMap[key]={
+    list.forEach(post => {
+      let key = moment(post.date).format('YYYY-MM');
+      if (!dateMap[key]) {
+        dateMap[key] = {
           date: moment(post.date).startOf('month'),
           list: []
         }
@@ -43,13 +48,13 @@ export default class extends think.controller.base {
     return Object.keys(dateMap).map(key => dateMap[key]);
   }
 
-  gatherCategories(categories){
-    let dateMap={};
+  gatherCategories(categories) {
+    let dateMap = {};
 
-    categories.forEach(cg =>{
-      let key=cg.category;
-      if(!dateMap[key]){
-        dateMap[key]={
+    categories.forEach(cg => {
+      let key = cg.category;
+      if (!dateMap[key]) {
+        dateMap[key] = {
           cate: cg.category,
           list: [],
           count: ''
@@ -57,7 +62,7 @@ export default class extends think.controller.base {
       }
 
       dateMap[key].list.push(cg);
-      dateMap[key].count=dateMap[key].list.length;
+      dateMap[key].count = dateMap[key].list.length;
     });
 
     return Object.keys(dateMap).map(key => dateMap[key]);

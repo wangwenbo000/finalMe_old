@@ -15,6 +15,7 @@ export default class extends Base {
   async indexAction() {
     let artical_model = this.model('article');
     let category_model = this.model('category');
+    let config_model = this.model('config');
 
     let adminLoginInfo = await this.session('adminInfo');
     let artical_count = await artical_model.count();
@@ -25,6 +26,7 @@ export default class extends Base {
     let show4 = await artical_model.where({show: 4}).count();
     let category_count = await category_model.count();
     let comment_count = await artical_model.sum('comment');
+    let config = await config_model.select();
 
     let globalDataJson = {
       adminInfo: adminLoginInfo,
@@ -43,7 +45,8 @@ export default class extends Base {
         startTime: think.startTime,
         env: think.env,
         version: think.version
-      }
+      },
+      config: config[0]
     };
     return this.success(globalDataJson);
   }
@@ -66,7 +69,14 @@ export default class extends Base {
         onedata.push([i, j, 0]);
       }
     }
-
     this.success(onedata);
+  }
+
+  async setconfigAction() {
+    let configJSON = this.post();
+    let cfdata = await this.model('config').update(configJSON);
+    await this.session("config",configJSON);
+    return this.success();
+
   }
 }

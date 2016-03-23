@@ -9,7 +9,6 @@ export default class extends think.controller.base {
     let adminInfo = await this.session('adminInfo');
     let whereFrom = this.http.controller;
     if(whereFrom === 'login'){
-      
       return;
     }
     if(think.isEmpty(adminInfo)){

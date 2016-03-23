@@ -2,7 +2,7 @@
   "apps": [{
     "name": "finalMe",
     "script": "www/production.js",
-    "cwd": "/www/finalMe",
+    "cwd": "/mnt/hgfs/finalMe",
     "exec_mode": "cluster",
     "instances": 0,
     "max_memory_restart": "1G",

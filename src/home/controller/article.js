@@ -33,19 +33,8 @@ export default class extends Base {
       }
     });
     md.use(require('markdown-it-imsize'), {autofill: true});
+    md.use(require('markdown-it-emoji'));
     list[0].content = md.render(list[0].content);
-    //marked.setOptions({
-    //  renderer: new marked.Renderer(),
-    //  gfm: true,
-    //  tables: true,
-    //  breaks: false,
-    //  pedantic: false,
-    //  sanitize: true,
-    //  smartLists: true,
-    //  smartypants: false
-    //});
-    //list[0].content = marked(list[0].content);
-    //list[0].content=list[0].content.replace(/<img.+src/gi, "<img src='/static/img/loading.gif' data-echo");
 
     this.assign({
       "title": list[0].title + " | " + think.config('blog_info').blog_name,

@@ -30,7 +30,8 @@
 </template>
 
 <script type="text/babel">
-  import Statistics from './statistics.vue'
+  import Statistics from './statistics.vue';
+  import loading from '../mixin/mixin_loading';
   import Chart from 'echarts'
   //  require('echarts/lib/chart/heatmap');
   //  require('echarts/lib/component/tooltip');
@@ -39,12 +40,12 @@
 
   export default{
     props: ["statistics"],
+    mixins: [loading],
     components: {
       Statistics
     },
     ready(){
       this.$http.post('/admin/globaldata/echart').then(response=> {
-        console.log(response.data);
         this.echart(response.data.data);
       });
     },

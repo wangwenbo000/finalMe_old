@@ -37,6 +37,7 @@
   import Tags from './tags.vue'
   import moment from 'moment'
   import route from '../mixin/mixin_ctrAction';
+  import loading from '../mixin/mixin_loading';
 
   export default{
     data(){
@@ -59,7 +60,7 @@
         saveAPI: '/admin/article/add'
       }
     },
-    mixins: [route],
+    mixins: [route,loading],
     components: {
       Publish,
       Category,
@@ -92,6 +93,7 @@
     },
     methods: {
       pushData(){
+        this.$set('sl',true);
         this.input.content = this.testEditor.getMarkdown();
         this.$http.post(this.saveAPI, this.input).then(response=> {
           window.location.href = "#!/Artical";

@@ -9,6 +9,7 @@
               :condition.sync="condition"
               :chkid.sync="checkId"
               v-on:bootpag="bootpag"
+              :fsl.sync="sl"
       >
       </Fliter>
       <List :data.sync="listData.data"
@@ -37,6 +38,7 @@
 
 <script type="text/babel">
   import init from '../mixin/mixin_initPage';
+  import loading from '../mixin/mixin_loading';
   import Fliter from './fliter.vue';
   import List from './list.vue';
   export default{
@@ -54,6 +56,6 @@
       Fliter,
       List
     },
-    mixins: [init]
+    mixins: [init,loading]
   }
 </script>

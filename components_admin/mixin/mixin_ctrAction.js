@@ -14,17 +14,17 @@ export default{
       if (id == 'Write') {
         this.$set("pushBtnStr", "发表文章");
         this.$set("input.category", "javascript");
-        this.$set("input.lastdate",nowDate);
+        this.$set("input.lastdate", nowDate);
         this.$set("input.date", nowDate);
         transition.next();
       } else if (!isNaN(parseInt(id))) {
         this.$http.post(this.getAPI, {id: id}).then(response=> {
           var response = response.data.data[0];
-          let tagsArr = response.tags==null?[]:response.tags.split("|");
+          let tagsArr = response.tags == null ? [] : response.tags.split("|");
           this.$set("pushBtnStr", "更新文章");
           this.$set("input", response);
           this.$set("tag.tagArr", tagsArr);
-          this.$set("input.lastdate",moment(response.lastdate).format(timeFormatStr));
+          this.$set("input.lastdate", moment(response.lastdate).format(timeFormatStr));
           this.$set("input.date", moment(response.date).format(timeFormatStr));
         });
         transition.next();

@@ -14,6 +14,9 @@ import Index from './index/index.vue'
 import Artical from './article/article.vue'
 import Ctr from './article/ctr.vue'
 import Setting from './setting/setting.vue'
+import Base from './setting/base.vue'
+import Api from './setting/api.vue'
+import Author from './setting/author.vue'
 
 //vue路由设置
 Vue.use(Router);
@@ -49,14 +52,28 @@ router.map({
   },
   '/Setting':{
     name: 'setting',
-    component: Setting,
+    component: function (resolve) {
+      require(['./setting/setting.vue'], resolve);
+    },
     title:'站点设置',
-    //subRoutes: {
-    //  '/bar': {
-    //    component: Bar
-    //  }
-    //}
+    subRoutes: {
+      '/base': {
+        name:'base',
+        component: Base
+      },
+      '/api': {
+        name:'api',
+        component: Api
+      },
+      '/author': {
+        name:'author',
+        component: Author
+      }
+    }
   }
+});
+router.redirect({
+  '/Setting': '/Setting/base',
 });
 
 router.start(App, '#app');

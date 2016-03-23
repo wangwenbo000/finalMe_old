@@ -7,97 +7,50 @@
     <div class="card-block">
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" href="#home" role="tab" data-toggle="tab">Home</a>
+          <a :class="['nav-link',$route.name=='base'?'active':'']"
+             v-link="{name:'base'}">基本设置</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#profile" role="tab" data-toggle="tab">Profile</a>
+          <a :class="['nav-link',$route.name=='api'?'active':'']"
+             v-link="{name:'api'}">API</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#messages" role="tab" data-toggle="tab">Messages</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#settings" role="tab" data-toggle="tab">Settings</a>
+          <a :class="['nav-link',$route.name=='author'?'active':'']"
+             v-link="{name:'author'}">作者</a>
         </li>
       </ul>
 
       <!-- Tab panes -->
-      <div class="tab-content">
-        <P>S</P>
-        <router-view transition="fade" transition-mode="out-in"></router-view>
+      <div class="tab-content setting">
+        <router-view transition="fade" transition-mode="out-in"
+                     :cf.sync="config" :ai.sync="adminInfo"></router-view>
+        <br>
+        <button type="submit" class="btn btn-success" @click="changeCF">提交修改</button>
       </div>
-
-
-      <form>
-        <h4><i class="fa fa-diamond"></i> 站点</h4>
-        <fieldset class="form-group">
-          <label for="exampleInputEmail1">站点主标题</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="AdminPanel">
-        </fieldset>
-        <fieldset class="form-group">
-          <label for="exampleInputPassword1">站点副标题</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="用简洁的文字描述本站点">
-          <small class="text-muted">用简洁的文字描述本站点</small>
-        </fieldset>
-        <h4><i class="fa fa-key"></i> 后台</h4>
-        <div class="dropdown-divider"></div>
-        <fieldset class="form-group">
-          <label for="exampleInputPassword1">后台站点标题</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="AdminPanel">
-        </fieldset>
-        <h4><i class="fa fa-bolt"></i> 站点配置</h4>
-        <div class="dropdown-divider"></div>
-        <fieldset class="form-group">
-          <label for="exampleInputPassword1">站点网址</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="http://">
-        </fieldset>
-        <fieldset class="form-group">
-          <label for="exampleInputPassword1">站点ICP备案号</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="ICP备">
-        </fieldset>
-        <fieldset class="form-group">
-          <label for="exampleInputPassword1"><i class="fa fa-server"></i> 服务器租用时间</label>
-          <input type="password" class="form-control" id="datetimepicker" placeholder="2016/08/08">
-        </fieldset>
-        <h4><i class="fa fa-book"></i> 阅读</h4>
-        <div class="dropdown-divider"></div>
-        <fieldset class="form-group">
-          <label for="exampleInputPassword1">默认显示文章数</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="10">
-        </fieldset>
-        <fieldset class="form-group">
-          <label for="exampleInputPassword1"><i class="fa fa-rss"></i> 默认Feed显示文章数</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="10">
-        </fieldset>
-        <h4><i class="fa fa-male"></i> 作者</h4>
-        <div class="dropdown-divider"></div>
-        <fieldset class="form-group">
-          <label for="exampleInputPassword1">昵称</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
-        </fieldset>
-        <div class="alert alert-warning" role="alert">
-          <fieldset class="form-group">
-            <label for="exampleInputPassword1">原始密码</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
-          </fieldset>
-          <fieldset class="form-group">
-            <label for="exampleInputPassword1">密码修改</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
-          </fieldset>
-          <fieldset class="form-group">
-            <label for="exampleInputPassword1">确认密码</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
-          </fieldset>
-          <button type="submit" class="btn btn-sm btn-warning">修改作者资料</button>
-        </div>
-
-        <button type="submit" class="btn btn-lg btn-primary">更新资料</button>
-      </form>
     </div>
   </div>
 </template>
 
 <script type="text/babel">
+  import checkbox from '../mixin/mixin_checkbox';
+  import loading from '../mixin/mixin_loading';
   export default{
+    props:['config','adminInfo'],
+    data(){
+      return{
+        configAPI:'/admin/globaldata/config',
+        setconfigAPI:'/admin/globaldata/setconfig',
+        config:this.config
+      }
+    },
+    mixins:[checkbox,loading],
+    methods:{
+      changeCF(){
+        var self = this;
+        this.$http.post(this.setconfigAPI,this.config).then(response=> {
 
+        });
+      }
+    }
   }
 </script>
