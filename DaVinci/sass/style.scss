@@ -9,7 +9,7 @@
   background-size: 100%;
 }
 
-h1, h2, h3, p {
+h1, h2, h3, h4, h5, h6, p {
   font-weight: inherit;
   margin: 0;
 }
@@ -30,11 +30,6 @@ footer a,
 .meta .comment a,
 .pagination a {
   color: $main-link-color;
-}
-code{
-  color:#c7254e;
-  padding: 2px 4px;
-  background-color: #f9f2f4;
 }
 
 a {
@@ -64,7 +59,7 @@ header {
   }
   h1 {
     font-size: 22px;
-    font-weight: 100;
+    //font-weight: 100;
   }
   .subtitle {
     color: #A9A9A9;
@@ -88,7 +83,7 @@ header {
   .archives-icon {
     background-image: url($archives-icon);
   }
-  .category-icon{
+  .category-icon {
     background-image: url($categories-icon);
   }
   .headerBtn {
@@ -132,7 +127,8 @@ header {
     display: none;
   }
 }
-.emptyArticle{
+
+.emptyArticle {
   background-color: #FFFCE8;
   padding: 10px 0;
   font-size: 14px;
@@ -160,8 +156,8 @@ article {
   .title {
     font-size: 30px;
     line-height: 1.2;
-    font-weight: 200;
-    span{
+    font-weight: 400;
+    span {
       font-size: 12px;
       display: inline-block;
       padding: 2px 4px;
@@ -170,19 +166,77 @@ article {
       vertical-align: super;
     }
   }
+  code {
+    color: #80939D;
+    padding: 4px;
+    margin: auto 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #FFFEEA;
+    border: 1px solid #EFE9C2;
+    font-family: Sans-Serif;
+  }
   .entry-content {
     color: #626262;
     font-size: 16px;
     margin-top: 20px;
     line-height: 2;
     text-align: justify;
+    //font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+      margin: 16px 0 0 0;
+    }
+    .toc-list {
+      float: right;
+      width: 200px;
+      margin: 0 0 20px 20px;
+      border: 1px solid #EFEFEF;
+      font-size: 14px;
+      background-color: #fff;
+      padding-bottom: 12px;
+      h3,ul{
+        margin: 0;
+      }
+      p{
+        margin: 0 0 6px 0;
+        padding: 4px 0;
+        text-indent: 12px;
+        font-size: 14px;
+        border-bottom: 1px solid #efefef;
+      }
+      ul{
+        padding: 0 0 0 30px;
+        li{
+          height: 24px;
+        }
+      }
+      ul>ul{
+        padding: 0;
+      }
+    }
     img {
+      display: inline-block;
       max-width: 100%;
+      height: auto;
+      margin: 10px 0;
       border: 1px solid #efefef;
       padding: 3px;
       background: #f8f8f8;
     }
+    blockquote {
+      color: #999;
+      font-style: italic;
+      border-left: 4px solid #EFEFEF;
+      padding: 6px 16px 6px 10px;
+      background: #fbfbfb;
+      font-size: 14px;
+      margin-left: 0;
+      overflow: auto;
+    }
     p {
+      font-weight: 100;
       a {
         display: inline-block;
         background: url($link-icon) left center no-repeat;
@@ -192,7 +246,7 @@ article {
     }
     .readmore {
       margin-top: 18px;
-      a{
+      a {
         margin: 0;
       }
     }
@@ -227,7 +281,7 @@ article {
       text-align: center;
       margin-top: 10px;
       padding-top: 12px;
-      border-top:1px dashed #efefef;
+      border-top: 1px dashed #efefef;
       a[rel="license"] {
         vertical-align: middle;
       }
@@ -235,13 +289,14 @@ article {
     }
   }
 }
-.activeinfo{
+
+.activeinfo {
   margin: 20px 0;
   padding: 0 20px;
-  h1{
+  h1 {
     margin: 30px 0;
   }
-  p{
+  p {
     line-height: 1.8;
     text-align: justify;
     color: #626262;
@@ -251,40 +306,41 @@ article {
     border-bottom: 1px solid #efefef;
   }
 }
-.archives{
+
+.archives {
   padding: 0 20px;
-  ul{
+  ul {
     padding-left: 16px;
-    li{
+    li {
       height: 32px;
       //font-size: 14px;
-      time{
+      time {
         font-size: 12px;
         color: #A9A9A9;
       }
-      span{
+      span {
         font-size: 12px;
       }
     }
   }
 }
-.cate-list{
+
+.cate-list {
   float: right;
   border: 1px solid #EFEFEF;
   padding: 0 16px;
   list-style: none;
   margin-right: 20px;
-  li{
+  li {
     margin: 10px 0;
     font-size: 14px;
   }
-  .title{
+  .title {
     border-bottom: 1px solid #EFEFEF;
     padding-bottom: 10px;
     font-weight: bold;
   }
 }
-
 
 footer {
   max-width: 1200px;
@@ -375,244 +431,108 @@ footer {
       margin-bottom: 10px;
     }
   }
+  article .entry-content .toc-list{
+    float: none;
+    margin: 10px auto;
+  }
+  header .headerBtn{
+    position: absolute;
+  }
+  header .archives-icon{
+    right: 26px;
+    top:50px;
+  }
+  header .category-icon{
+    right: 55px;
+    top:50px;
+  }
+
 }
 
-//代码高亮主题 | Solarized Color Schemes
-/*
-SOLARIZED HEX
---------- -------
-base03    #002b36
-base02    #073642
-base01    #586e75
-base00    #657b83
-base0     #839496
-base1     #93a1a1
-base2     #eee8d5
-base3     #fdf6e3
-yellow    #b58900
-orange    #cb4b16
-red       #dc322f
-magenta   #d33682
-violet    #6c71c4
-blue      #268bd2
-cyan      #2aa198
-green     #859900
-*/
-
-//code[class*="language-"],
-//pre[class*="language-"] {
-//  color: #657b83; /* base00 */
-//  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-//  font-size: 12px;
-//  text-align: left;
-//  white-space: pre;
-//  word-spacing: normal;
-//  word-break: normal;
-//  word-wrap: normal;
-//
-//  line-height: 1.4;
-//
-//  -moz-tab-size: 4;
-//  -o-tab-size: 4;
-//  tab-size: 4;
-//
-//  -webkit-hyphens: none;
-//  -moz-hyphens: none;
-//  -ms-hyphens: none;
-//  hyphens: none;
-//}
-//
-//pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
-//code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-//  background: #073642; /* base02 */
-//}
-//
-//pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
-//code[class*="language-"]::selection, code[class*="language-"] ::selection {
-//  background: #073642; /* base02 */
-//}
-//
-///* Code blocks */
-//pre[class*="language-"] {
-//  padding: 1em;
-//  margin: .5em 0;
-//  overflow: auto;
-//  border-radius: 0;
-//}
-//
-//:not(pre) > code[class*="language-"],
-//pre[class*="language-"] {
-//  background-color: #FFFCF2; /* base3 */
-//}
-//
-///* Inline code */
-//:not(pre) > code[class*="language-"] {
-//  padding: .1em;
-//  border-radius: .3em;
-//}
-//
-//.token.comment,
-//.token.prolog,
-//.token.doctype,
-//.token.cdata {
-//  color: #93a1a1; /* base1 */
-//}
-//
-//.token.punctuation {
-//  color: #586e75; /* base01 */
-//}
-//
-//.namespace {
-//  opacity: .7;
-//}
-//
-//.token.property,
-//.token.tag,
-//.token.boolean,
-//.token.number,
-//.token.constant,
-//.token.symbol,
-//.token.deleted {
-//  color: #268bd2; /* blue */
-//}
-//
-//.token.selector,
-//.token.attr-name,
-//.token.string,
-//.token.char,
-//.token.builtin,
-//.token.url,
-//.token.inserted {
-//  color: #2aa198; /* cyan */
-//}
-//
-//.token.entity {
-//  color: #657b83; /* base00 */
-//  background: #eee8d5; /* base2 */
-//}
-//
-//.token.atrule,
-//.token.attr-value,
-//.token.keyword {
-//  color: #859900; /* green */
-//}
-//
-//.token.function {
-//  color: #b58900; /* yellow */
-//}
-//
-//.token.regex,
-//.token.important,
-//.token.variable {
-//  color: #cb4b16; /* orange */
-//}
-//
-//.token.important,
-//.token.bold {
-//  font-weight: bold;
-//}
-//
-//.token.italic {
-//  font-style: italic;
-//}
-//
-//.token.entity {
-//  cursor: help;
-//}
-
 /*
 
-github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
 
 */
 
 .hljs {
+  code {
+    background: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+  line-height: 23px;
+  border: 1px dashed #EFEFEF;
+  font-size: 14px;
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  color: #828282;
-  background: #f8f8f8;
-  font-size: 14px;
-  line-height: 1.4;
-  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  background: #fbfbfb;
+  color: #657b83;
 }
 
 .hljs-comment,
 .hljs-quote {
-  color: #998;
-  font-style: italic;
+  color: #93a1a1;
 }
 
+/* Solarized Green */
 .hljs-keyword,
 .hljs-selector-tag,
-.hljs-subst {
-  color: #333;
-  font-weight: bold;
+.hljs-addition {
+  color: #859900;
 }
 
+/* Solarized Cyan */
 .hljs-number,
-.hljs-literal,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-tag .hljs-attr {
-  color: #008080;
-}
-
 .hljs-string,
-.hljs-doctag {
-  color: #d14;
+.hljs-meta .hljs-meta-string,
+.hljs-literal,
+.hljs-doctag,
+.hljs-regexp {
+  color: #2aa198;
 }
 
+/* Solarized Blue */
 .hljs-title,
 .hljs-section,
-.hljs-selector-id {
-  color: #900;
-  font-weight: bold;
-}
-
-.hljs-subst {
-  font-weight: normal;
-}
-
-.hljs-type,
-.hljs-class .hljs-title {
-  color: #458;
-  font-weight: bold;
-}
-
-.hljs-tag,
 .hljs-name,
-.hljs-attribute {
-  color: #000080;
-  font-weight: normal;
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #268bd2;
 }
 
-.hljs-regexp,
-.hljs-link {
-  color: #009926;
+/* Solarized Yellow */
+.hljs-attribute,
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-class .hljs-title,
+.hljs-type {
+  color: #BF940F;
 }
 
+/* Solarized Orange */
 .hljs-symbol,
-.hljs-bullet {
-  color: #990073;
+.hljs-bullet,
+.hljs-subst,
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-link {
+  color: #cb4b16;
 }
 
+/* Solarized Red */
 .hljs-built_in,
-.hljs-builtin-name {
-  color: #0086b3;
-}
-
-.hljs-meta {
-  color: #999;
-  font-weight: bold;
-}
-
 .hljs-deletion {
-  background: #fdd;
+  color: #dc322f;
 }
 
-.hljs-addition {
-  background: #dfd;
+.hljs-formula {
+  background: #eee8d5;
 }
 
 .hljs-emphasis {
@@ -622,4 +542,3 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-strong {
   font-weight: bold;
 }
-

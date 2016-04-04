@@ -14,7 +14,6 @@ export default class extends Base {
 
   async indexAction(http) {
     var rssConfig = think.config('rss');
-    var siteConfig = think.config('blog_info');
 
     if(!rssConfig.rss_on){
       return this._404Action();
@@ -30,7 +29,6 @@ export default class extends Base {
 
     this.assign('list', list);
     this.assign('updateTime', updateTime);
-    this.assign('siteInfo', siteConfig);
 
     this.header("Content-Type", "text/xml");
     this.display('index.xml');

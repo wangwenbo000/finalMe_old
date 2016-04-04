@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-
-    <title><![CDATA[<%- siteInfo.blog_name %>]]></title>
-    <link href="<%= siteInfo.website_domain %>atom.xml" rel="self"/>
-    <link href="<%= siteInfo.website_domain %>"/>
-    <updated><%= updateTime %></updated>
-    <id><%= siteInfo.website_domain %></id>
-    <author>
-        <name><![CDATA[<%= siteInfo.website_author_name %>]]></name>
-    </author>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+    <title><%- page.blogname %></title>
+    <link href="<%= page.domain %>"/>
+    <description><%= page.description %></description>
+    <atom:link href="<%= page.domain %>/rss.html" rel="self"/>
+    <language>zh-cn</language>
+    <lastBuildDate><%= updateTime %></lastBuildDate>
     <generator uri="http://wangwenbo.me/">wangwenbo.me</generator>
     <% list.forEach(function(post) { %>
-    <entry>
-        <title type="html"><![CDATA[<%- post.title %>]]></title>
-        <link href="<%= siteInfo.website_domain %>/<%= post.routename %>"/>
-        <updated><%= post.lastdate %></updated>
-        <id><%= siteInfo.website_domain %>/<%= post.routename %></id>
-        <content type="html">
-            <%=post.content%>
-            <a href="<%= siteInfo.website_domain %>/<%= post.routename %>">阅读全文</a>
-        </content>
-    </entry>
+    <item>
+        <title><%- post.title %></title>
+        <author><%= post.author %></author>
+        <link><%= page.domain %>/article/<%= post.routename %></link>
+        <description>
+            <%=rssContent(post.content,page.domain,post.routename)%>
+        </description>
+        <pubDate><%= post.lastdate %></pubDate>
+        <guid><%= page.domain %>/article/<%= post.routename %></guid>
+    </item>
     <% }) %>
-</feed>
+    </channel>
+</rss>

@@ -28,8 +28,7 @@
           </table>
           <div class="dropdown-divider"></div>
           <div class="alert alert-warning" role="alert" v-show="inputcolor=='add'">
-            <span class="label label-success">即将要添加的分类</span>: {{name}} ·
-              <small>{{introduce}}</small>
+            <span class="label label-success">即将要添加的分类</span>: {{postjson.name}} ·<small>{{postjson.introduce}}</small>
           </div>
           <div role="alert" v-show="showinput"
                :class="['alert',inputcolor=='edit'?'alert-success':'alert-warning']">

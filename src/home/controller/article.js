@@ -34,6 +34,7 @@ export default class extends Base {
     });
     md.use(require('markdown-it-imsize'), {autofill: true});
     md.use(require('markdown-it-emoji'));
+    md.use(require('markdown-it-toc'));
     list[0].content = md.render(list[0].content);
 
     this.assign({

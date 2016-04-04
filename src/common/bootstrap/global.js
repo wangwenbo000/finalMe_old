@@ -27,6 +27,19 @@ global.cutContent = function (content) {
   }
 };
 
+global.rssContent = function (content,domain,routename) {
+  var md = require('markdown-it')({
+    html: true,
+    linkify: true,
+    typography: true,
+    breaks: false,
+  });
+  md.use(require('markdown-it-emoji'));
+  md.use(require('markdown-it-imsize'), {autofill: true});
+  let rssContent = md.render(content);
+  return rssContent+"<a target='_blank' href="+domain+"/article/"+routename+">详细阅读</a>";
+};
+
 global.tags2arr = function (tagArr) {
   return tagArr == null ? [] : tagArr.split("|");
 };

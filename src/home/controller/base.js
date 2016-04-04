@@ -22,7 +22,8 @@ export default class extends think.controller.base {
         author: configSession.author,
         description: configSession.description,
         keywords: configSession.keywords,
-        na:configSession.na
+        na:configSession.na,
+        domain:configSession.domain
       }
     });
   }
