@@ -18,9 +18,10 @@ body {
   margin: 0;
   background: $global-bg-color;
   font: $global-font;
+  -webkit-font-smoothing:antialiased;
 }
 
-header h1 a,
+//header h1 a,
 .otheread ul li a,
 footer a,
 .archives a,
@@ -46,20 +47,34 @@ a {
   word-wrap: break-word;
   overflow: auto;
 }
+header .headerBtn,
+header .share,
+header .sharegroup{
+  margin-left: 10px;
+  margin-top: 1px;
+  float: right;
+}
 
 header {
   border-bottom: 1px solid #EFEFEF;
   padding: 0 0 10px;
-  background: url($logo) no-repeat left top;
+  background: url($logo) no-repeat left 2px;
   background-size: 26px;
-  text-indent: 20px;
   overflow: auto;
+  a{
+    color: #02F;
+    @include transition-property(color);
+    @include transition-duration(.4s);
+  }
+  a:hover{
+    color: #ff0000;
+  }
   h1, .subtitle, .rss {
     display: inline-block;
   }
   h1 {
     font-size: 22px;
-    //font-weight: 100;
+    text-indent: 32px;
   }
   .subtitle {
     color: #A9A9A9;
@@ -69,8 +84,6 @@ header {
   }
   .share {
     display: block;
-    float: right;
-    margin-left: 10px;
     line-height: 1000;
     overflow: hidden;
     @include opacity(0.2);
@@ -80,11 +93,17 @@ header {
   .readingCtr {
     background-image: url($reading);
   }
-  .archives-icon {
-    background-image: url($archives-icon);
-  }
-  .category-icon {
-    background-image: url($categories-icon);
+  //.archives-icon {
+  //  background-image: url($archives-icon);
+  //}
+  //.category-icon {
+  //  background-image: url($categories-icon);
+  //}
+  .menu{
+    float: right;
+    width: 48px;
+    text-align: center;
+    margin-top: 4px;
   }
   .headerBtn {
     background-repeat: no-repeat;
@@ -94,14 +113,10 @@ header {
     width: 24px;
     height: 24px;
     border: 1px solid #EFEFEF;
-    float: right;
-    margin-left: 10px;
   }
   .sharegroup {
     height: 26px;
-    float: right;
     border-left: 1px solid #EFEFEF;
-    margin-left: 10px;
   }
   .share:hover {
     @include opacity(1);
@@ -156,7 +171,7 @@ article {
   .title {
     font-size: 30px;
     line-height: 1.2;
-    font-weight: 400;
+    font-weight: 300;
     span {
       font-size: 12px;
       display: inline-block;
@@ -167,23 +182,21 @@ article {
     }
   }
   code {
-    color: #80939D;
-    padding: 4px;
+    padding: 2px 4px;
     margin: auto 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    background-color: #FFFEEA;
-    border: 1px solid #EFE9C2;
-    font-family: Sans-Serif;
+    background-color: #F1FAFF;
+    border: 1px solid #C5D8E0;
+    font: 13px Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
   }
   .entry-content {
-    color: #626262;
+    color: #666666;
     font-size: 16px;
     margin-top: 20px;
     line-height: 2;
     text-align: justify;
-    //font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
     h1, h2, h3, h4, h5, h6 {
       font-weight: bold;
       margin: 16px 0 0 0;
@@ -209,7 +222,7 @@ article {
       ul{
         padding: 0 0 0 30px;
         li{
-          height: 24px;
+          text-align: left;
         }
       }
       ul>ul{
@@ -236,7 +249,7 @@ article {
       overflow: auto;
     }
     p {
-      font-weight: 100;
+      vertical-align: baseline;
       a {
         display: inline-block;
         background: url($link-icon) left center no-repeat;
@@ -463,11 +476,11 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
     border: none;
   }
   line-height: 23px;
-  border: 1px dashed #EFEFEF;
+  border: 1px solid #F3F3F3;
   font-size: 14px;
   display: block;
   overflow-x: auto;
-  padding: 0.5em;
+  padding: 1.2em;
   background: #fbfbfb;
   color: #657b83;
 }

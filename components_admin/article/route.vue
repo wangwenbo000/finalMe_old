@@ -28,17 +28,8 @@
 </template>
 
 <script type="text/babel">
-  import Md5 from 'md5'
   export default{
     props: ['routename', 'title'],
-    data(){
-      return {
-        //配置百度翻译
-        routeTransAPI: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
-        appid: '20160218000012560',
-        key: 'NblJ36jLqoL8mKEsevzh'
-      }
-    },
     computed: {
       routeInputlength(){
         return this.routename.length;
@@ -46,20 +37,10 @@
     },
     methods: {
       routeTrans(){
-        var salt=(new Date).getTime();
-        var str1=this.appid + this.title + salt + this.key;
-        var sign=Md5(str1);
-        let transData={
-          q: this.title,
-          appid: this.appid,
-          salt: salt,
-          from: 'auto',
-          to: 'en',
-          sign: sign
-        };
-        this.$http.jsonp(this.routeTransAPI, transData).then(response=>{
-          if(!response.data.error_code){
-            let trans_Res=response.data.trans_result[0].dst.replace(/\s/g, "-");
+        this.$http.post("/admin/article/trans", {t:this.title}).then(response=> {
+          var getTransData = response.data.data;
+          if(typeof getTransData === "object"){
+            let trans_Res=getTransData[0].dst.replace(/\s/g, "-");
             trans_Res=trans_Res.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g, "");
             this.$set("routename", trans_Res);
           }

@@ -28,8 +28,8 @@
       <td>
         <input type="radio" value="4" v-model="show" name="showState">
       </td>
-      <td class="text-muted">{{lastdate}}</td>
-      <td class="text-warning">{{pushdate}}</td>
+      <td class="text-muted">{{pushdate}}</td>
+      <td class="text-warning">{{lastdate}}</td>
     </tr>
     </tbody>
   </table>
