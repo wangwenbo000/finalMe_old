@@ -420,10 +420,10 @@ footer {
   }
   header {
     text-align: center;
-    text-indent: 0;
     .subtitle, h1 {
       vertical-align: baseline;
       display: block;
+      text-indent: 0;
     }
     .subtitle {
       margin-top: 10px;

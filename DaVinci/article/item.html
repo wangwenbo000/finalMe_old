@@ -36,6 +36,8 @@
     unload: false,
     });
 </script>
+<%if(articlelist.show !== 2){%>
 <%- include suggest.html %>
 <%- include next_prev.html %>
+<%}%>
 <%- include comment.html %>

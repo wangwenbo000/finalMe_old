@@ -20,13 +20,13 @@
     <div class="col-sm-3">
       <div class="card card-block text-center">
         <h2 class="card-text"><i class="fa fa-commenting-o"></i> {{statistics.commentCount}}</h2>
-        <p class="card-text text-muted">评论 | <a href="" class="text-info">设置disqus</a></p>
+        <p class="card-text text-muted">评论 | <a href="/admin#!/Setting/api" class="text-info">设置disqus</a></p>
       </div>
     </div>
     <div class="col-sm-3">
       <div class="card card-block text-center">
         <h2 class="card-text"><i class="fa fa-folder-open-o"></i> {{statistics.categoryCount}}</h2>
-        <p class="card-text text-muted">分类目录 | <a href="" class="text-info">管理目录</a></p>
+        <p class="card-text text-muted">分类目录</p>
       </div>
     </div>
     <!--<div class="col-sm-2">-->
@@ -38,7 +38,7 @@
     <div class="col-sm-3">
       <div class="card card-block text-center">
         <h2 class="card-text"><i class="fa fa-server"></i> {{statistics.serverLastDay}}</h2>
-        <p class="card-text text-muted"><i class="fa fa-circle text-success"></i> <a href="" class="text-info">阿里云管理</a></p>
+        <p class="card-text text-muted"><i class="fa fa-circle text-success"></i> <a href="https://www.aliyun.com/" target="_blank" class="text-info">阿里云管理</a></p>
       </div>
     </div>
   </div>

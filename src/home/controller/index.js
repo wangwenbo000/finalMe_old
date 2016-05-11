@@ -18,7 +18,7 @@ export default class extends Base {
     var listrows = await this.model('config').cache(3600).field('i_perpage').select();
     listrows = listrows.i_perpage;
     var pnTotal = await this.modelInstance
-        .where({"show": ["!=", 0, 4]})
+        .where({show: ["NOTIN",[0, 2, 4]]})
         .count();
 
     var pnPosition = pn > Math.ceil(pnTotal / listrows) ? false : true;
@@ -28,7 +28,7 @@ export default class extends Base {
 
   async articlelist(pn, listrows, pnPosition) {
     var data = await this.modelInstance
-        .where({"show": ["!=", 0, 4]})
+        .where({show: ["NOTIN",[0, 2, 4]]})
         .page(pn, listrows)
         .order({'show': 'ASC', 'id': 'DESC'})
         .countSelect(pnPosition);

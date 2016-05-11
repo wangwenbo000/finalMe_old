@@ -70,7 +70,7 @@
           case 1:
             return '<i class="fa fa-arrow-up"></i>';
             break;
-          case 3:
+          case 2:
             return '<i class="fa fa-file-o"></i>';
             break;
           case 4:

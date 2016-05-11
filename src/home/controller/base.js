@@ -8,7 +8,7 @@ export default class extends think.controller.base {
   async __before(http) {
     let config_model = this.model('config');
     let article_model = this.model('article');
-    let new_title = await article_model.cache(3600).field('title').order('id DESC').find();
+    let new_title = await article_model.cache(3600).where({show: ["NOTIN",[0, 2, 4]]}).field('title').order('id DESC').find();
     let bi = await config_model.cache(3600).select();
     bi[0].na = new_title.title;
     let configSession = bi[0];

@@ -14,7 +14,7 @@
     <tbody>
     <tr>
       <td>
-        <input type="radio" value="2" v-model="show" name="showState" checked>
+        <input type="radio" value="6" v-model="show" name="showState" checked>
       </td>
       <td>
         <input type="radio" value="0" v-model="show" name="showState">
@@ -23,7 +23,7 @@
         <input type="radio" value="1" v-model="show" name="showState">
       </td>
       <td>
-        <input type="radio" value="3" v-model="show" name="showState">
+        <input type="radio" value="2" v-model="show" name="showState">
       </td>
       <td>
         <input type="radio" value="4" v-model="show" name="showState">

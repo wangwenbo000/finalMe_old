@@ -13,7 +13,7 @@ export default class extends Base {
   }
 
   async indexAction(http) {
-    var archiveslist = await this.modelInstance.where({"show":{"!=":0}}).order('date DESC').select();
+    var archiveslist = await this.modelInstance.where({show: ["NOTIN",[0, 2, 4]]}).order('date DESC').select();
     console.log(this.gatherPost(archiveslist));
     this.assign('archiveList',this.gatherPost(archiveslist));
     this.display();
