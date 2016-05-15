@@ -12,7 +12,7 @@
  * 
  */
 
-//'use strict';
+'use strict';
 //
 //import debugToolbar from 'think-debug-toolbar';
 //
@@ -25,3 +25,16 @@
 //};
 //
 //think.middleware('debug_toolbar', debugToolbar(conf));
+
+think.middleware("userAgent", async http => {
+  var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+  var regStr_ie = /msie [\d.]/gi ;
+  var UA= await http.userAgent();
+  var isIE = reIE.test(UA);
+
+  if(isIE){
+    if(UA.match(regStr_ie)[0].split(" ")[1]<=8){
+      http._post = true;
+    }
+  }
+});

@@ -44,7 +44,7 @@
   export default{
     data(){
       return {
-        getAPI: '/admin/article/get',
+        getAPI: '/admin/article/getlist',
         condition: '',
         listData: {},
         checkId: [],

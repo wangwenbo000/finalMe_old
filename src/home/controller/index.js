@@ -16,7 +16,7 @@ export default class extends Base {
   async indexAction(http) {
     var pn = this.get('pn');
     var listrows = await this.model('config').cache(3600).field('i_perpage').select();
-    listrows = listrows.i_perpage;
+    listrows = listrows[0].i_perpage;
     var pnTotal = await this.modelInstance
         .where({show: ["NOTIN",[0, 2, 4]]})
         .count();

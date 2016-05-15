@@ -56,7 +56,7 @@
           nowInput: '',
           tagArr: []
         },
-        getAPI: '/admin/article/get',
+        getAPI: '/admin/article/getlist',
         saveAPI: '/admin/article/add'
       }
     },

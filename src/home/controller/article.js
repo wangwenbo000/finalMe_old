@@ -38,8 +38,7 @@ export default class extends Base {
     list[0].content = md.render(list[0].content);
 
     this.assign({
-      "title": list[0].title + " | " + think.config('blog_info').blog_name,
-      "articlelist": list[0],
+      "article": list[0],
       "suggestList": this.suggestlist(list[0].category, list[0].id),
       "p": this.pagination({">": list[0].id}, "ID ASC"),
       "n": this.pagination({"<": list[0].id}, "ID DESC")
@@ -50,7 +49,8 @@ export default class extends Base {
   async suggestlist(category, id) {
     var suggest = await this.modelInstance.where({
       "category": category,
-      "id": {"!=": id}
+      "id": {"!=": id},
+      show: ["NOTIN",[0, 2, 4]]
     }).page(0, 5).select();
     return suggest;
   }
@@ -64,6 +64,18 @@ export default class extends Base {
       .limit(1)
       .countSelect();
     return data.count ? data.data[0] : false;
+  }
+
+  async tagAction(){
+    var tag = decodeURIComponent(this.get("tag"));
+    var articleListForTags = await this.modelInstance
+      .where({tags:["like","%"+tag+"%"]})
+      .countSelect();
+    this.assign({
+      "articleListForTag":articleListForTags,
+      "tagName":tag
+    });
+    return this.display();
   }
 
 }

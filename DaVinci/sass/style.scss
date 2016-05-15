@@ -19,6 +19,7 @@ body {
   background: $global-bg-color;
   font: $global-font;
   -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
 //header h1 a,
@@ -93,12 +94,6 @@ header {
   .readingCtr {
     background-image: url($reading);
   }
-  //.archives-icon {
-  //  background-image: url($archives-icon);
-  //}
-  //.category-icon {
-  //  background-image: url($categories-icon);
-  //}
   .menu{
     float: right;
     width: 48px;
@@ -149,7 +144,56 @@ header {
   font-size: 14px;
   text-align: center;
 }
-
+.tagPageTitle{
+  text-align: center;
+  margin-top: 20px;
+  font-size: 20px;
+  background-color: #FFFCE8;
+  padding: 10px;
+  border: 1px solid #fbd757;
+  a{
+    font-size: 16px;
+    display: inline-block;
+    text-indent: 20px;
+  }
+}
+.taglist{
+  list-style: none;
+  padding: 0 20px;
+  a{
+    color: #385B6D;
+  }
+  li{
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    padding: 8px 20px;
+    height: 20px;
+    line-height: 20px;
+    background-color: #FFFCE8;
+    border: 1px solid #fbd757;
+    border-radius: 50px;
+    @include transition-property(background-color);
+    @include transition-duration(.4s);
+    span{
+      display: inline-block;
+      background-color: #385B6D;
+      color: #fff;
+      width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin-left: 10px;
+    }
+  }
+}
+.taglist{
+  a{
+    li:hover{
+      background-color: #e9d023;
+    }
+  }
+}
 article {
   margin-top: 32px;
   border-bottom: 1px solid #EFEFEF;
@@ -233,7 +277,6 @@ article {
       display: inline-block;
       max-width: 100%;
       height: auto;
-      margin: 10px 0;
       border: 1px solid #efefef;
       padding: 3px;
       background: #f8f8f8;
@@ -248,6 +291,7 @@ article {
       margin-left: 0;
       overflow: auto;
     }
+
     p {
       vertical-align: baseline;
       a {
@@ -270,17 +314,12 @@ article {
       padding: 10px 0;
       border-left: 4px solid #FBD757;
       font-size: 14px;
-      i {
-        font-family: "Courier New", Courier, monospace;
-        font-weight: 400;
-      }
     }
     .tags {
       margin-top: 12px;
       a {
         margin-left: 8px;
-        font-size: 12px;
-        color: #A9A9A9;
+        font-size: 14px;
       }
     }
     .readmore a,
@@ -325,7 +364,7 @@ article {
   ul {
     padding-left: 16px;
     li {
-      height: 32px;
+      margin-top: 12px;
       //font-size: 14px;
       time {
         font-size: 12px;
@@ -448,18 +487,9 @@ footer {
     float: none;
     margin: 10px auto;
   }
-  header .headerBtn{
-    position: absolute;
+  footer{
+    margin: 20px 20px;
   }
-  header .archives-icon{
-    right: 26px;
-    top:50px;
-  }
-  header .category-icon{
-    right: 55px;
-    top:50px;
-  }
-
 }
 
 /*

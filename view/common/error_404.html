@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Not Found - ThinkJS</title>
-<style>
-html{
-  background-color: #f8d300;
-}
-  body{
-    text-align: center;
-  }
-  h1{
-    font-size: 4rem;
-  }
-  .error-msg{
-    border: 1px solid #A52A2A;
-    display: inline-block;
-    padding: 10px;
-  }
-</style>
+  <title>Internal Server Error - ThinkJS</title>
+  <style>
+    body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code{margin:0;padding:0}
+    body {background:#F6F6F6;font:12px/1.5 \5FAE\8F6F\96C5\9ED1,arial,sans-serif;-webkit-font-smoothing:antialiased;}
+    .wrap {width: 800px;height:480px;background:#fff;position: absolute;left: 50%;margin-left: -400px;top: 50%;margin-top: -240px;}
+    h1{font-weight: 300;text-align: center;font-size: 166px; font-family: cursive;height: 220px;}
+    p{text-align: center;font-size: 30px;margin: 0}
+    .error-msg{text-align:center;font-size: 16px;margin-top: 30px;color: #385B6D;min-height: 42px;word-wrap: break-all;}
+    #back{display: block;text-align:center;color: #00a0e9;text-decoration: none;width: 160px; margin: 0 auto;border: 1px solid #00a0e9;padding: 14px; border-radius: 50px;}
+  </style>
 </head>
 <body>
-<h1>404</h1>
-<h6>ErrMsg:</h6>
-<div class="error-msg"><pre><%if(http.error){%><%=http.error.message%><%}%></pre></div>
+<div class="wrap">
+  <h1>404</h1>
+  <p>PAGE NOT FOUND</p>
+  <div class="error-msg"><pre><%if(http.error){%><%=http.error.message%><%}%></pre></div>
+  <a id="back" href="/">5秒钟后带你,返回上一页</a>
+</div>
+<script>
+  var backBtn = document.getElementById("back");
+  var i = 4;
+  setInterval(function(){
+    backBtn.innerHTML = i + "秒钟后带你,返回上一页";
+    i<=0? history.go(-1):i--;
+  },1000);
+</script>
 </body>
 </html>

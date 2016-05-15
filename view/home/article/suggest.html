@@ -1,1 +1,0 @@
-<div class="otheread"><h3>分类「<%=articlelist.category%>」的其它文章</h3><%if(suggestList.length === 0){%><p class="nomore">该分类下暂无其它文章</p><%}%><ul><% suggestList.forEach(function(sl){%><li><a href="/article/<%=sl.routename%>.html"><%=sl.title%></a>&nbsp;<time><%=formatTime(sl.date)%></time></li><%})%></ul></div>

@@ -19,7 +19,7 @@ export default class extends Base {
   }
 
   //查询&筛选
-  async getAction() {
+  async getlistAction() {
     let pdata = this.post();
     let pageIndex = this.post('page') || 1;
     let condition = think.isEmpty(this.post('condition')) ? '' : JSON.parse(this.post('condition'));
@@ -42,12 +42,14 @@ export default class extends Base {
   //增加&更新
   async addAction() {
     let id = this.post('id');
+
     if (think.isEmpty(id)) {
+      this.post().summary = this.post('content').split("[========]")[0];
       let insertId = await this.modelInstance.add(this.post());
       this.success(insertId);
     } else {
       this.post().lastdate = moment().format('YYYY/MM/DD h:mm:ss');
-      console.log(this.post('lastdate'));
+      this.post().summary = this.post('content').split("[========]")[0];
       let data = await this.modelInstance.where({id: id}).update(this.post());
       this.success(data);
     }
@@ -91,7 +93,6 @@ export default class extends Base {
     };
 
     var getTransData = await rp(options);
-    console.log(getTransData);
     this.success(getTransData.trans_result);
   }
 

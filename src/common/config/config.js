@@ -13,7 +13,7 @@ export default {
   cluster_on: false, //是否开启 cluster
 
   timeout: 120, //120 seconds
-  auto_reload: false, //自动重新加载修改的文件，development 模式下使用
+  auto_reload: true, //自动重新加载修改的文件，development 模式下使用
 
   resource_on: true, // 是否处理静态资源请求， porxy_on 开启下可以关闭该配置
   resource_reg: /^(static\/|[^\/]+\.(?!js|html)\w+$)/, //静态资源的正则
@@ -32,57 +32,57 @@ export default {
   callback_name: "callback", //jsonp 请求的 callback 名称
   json_content_type: "application/json", //json 输出时设置的 Content-Type
 
-  rss: {
-    rss_on: true,//开关
-    rss_show_num: 10//rss显示文章数
-  },
-
-  blog_info: {
-    blog_name: "小博叔叔 Uncle little Bo",//站点主标题
-    sub_title: "专注折腾",//副标题
-    icp_num: "16006848",//备案号
-    website_domain: "http://127.0.0.1:8360",//站点网址
-    website_author_name: "咔花叔叔",//作者名字
-    description:"wangwenbo.me 学习记录",
-    keywords:"wangwenbo.me 记录 学习 javascript"
-  },
-  /*
-  disqus评论
-
-  请求频次 1000/日
-   */
-  disqus: {
-    dqs_on: true,//disqus开关
-    short_name: 'wangwenbo',//disqus短名
-    //disqus application info
-    api_key: 'nXHXoex8H7nLQodiafaYwmTBR8KRZjwAjCpPqGqTMyUsGWe0CLcxL6tXOXcgPfyF',//公钥
-    api_secret: '5UgeBUWOe3dmKf5FuivVTmBWHkkXMRVoCrPutgjjVLMbQ0CHQXHhW5AUgMLmESQQ',//密钥
-    access_token: '92648d6fc1ce494989303b82733beff7'
-  },
-  /*
-   百度翻译
-   后台翻译路由单句使用
-
-   请求频次 1000/日
-   */
-  baidu_trans:{
-    routeTransAPI: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
-    appid: '20160218000012560',
-    key: 'NblJ36jLqoL8mKEsevzh',
-  },
-  /*
-   七牛
-   */
-  qiniu:{
-    Access_Key:'NDCsvyXGEJjqMUF9LlN7U4MpaJ5vfxbQlXQnEjfZ',
-    Secret_Key:'7Gtw1Ic-7NVW9aeRGUHrN6E6Ik3vVzGbS8OCOnKm',
-    Bucket_Name:'wangwenbo-me'
-  },
-
-  think_vision: think.version,//thinkjs版本
-  nums_per_page: 6,//每页显示文章数
-  admin_nums_per_page: 16,//后台每页显示文章数
-
-  admin_title: "FinalMe AdminPanel",//后台名
-  server_start_time: "2015/6/18"//服务器购入时间
+  //rss: {
+  //  rss_on: true,//开关
+  //  rss_show_num: 10//rss显示文章数
+  //},
+  //
+  //blog_info: {
+  //  blog_name: "小博叔叔 Uncle little Bo",//站点主标题
+  //  sub_title: "专注折腾",//副标题
+  //  icp_num: "16006848",//备案号
+  //  website_domain: "http://127.0.0.1:8360",//站点网址
+  //  website_author_name: "咔花叔叔",//作者名字
+  //  description:"wangwenbo.me 学习记录",
+  //  keywords:"wangwenbo.me 记录 学习 javascript"
+  //},
+  ///*
+  //disqus评论
+  //
+  //请求频次 1000/日
+  // */
+  //disqus: {
+  //  dqs_on: true,//disqus开关
+  //  short_name: 'wangwenbo',//disqus短名
+  //  //disqus application info
+  //  api_key: 'nXHXoex8H7nLQodiafaYwmTBR8KRZjwAjCpPqGqTMyUsGWe0CLcxL6tXOXcgPfyF',//公钥
+  //  api_secret: '5UgeBUWOe3dmKf5FuivVTmBWHkkXMRVoCrPutgjjVLMbQ0CHQXHhW5AUgMLmESQQ',//密钥
+  //  access_token: '92648d6fc1ce494989303b82733beff7'
+  //},
+  ///*
+  // 百度翻译
+  // 后台翻译路由单句使用
+  //
+  // 请求频次 1000/日
+  // */
+  //baidu_trans:{
+  //  routeTransAPI: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+  //  appid: '20160218000012560',
+  //  key: 'NblJ36jLqoL8mKEsevzh',
+  //},
+  ///*
+  // 七牛
+  // */
+  //qiniu:{
+  //  Access_Key:'NDCsvyXGEJjqMUF9LlN7U4MpaJ5vfxbQlXQnEjfZ',
+  //  Secret_Key:'7Gtw1Ic-7NVW9aeRGUHrN6E6Ik3vVzGbS8OCOnKm',
+  //  Bucket_Name:'wangwenbo-me'
+  //},
+  //
+  //think_vision: think.version,//thinkjs版本
+  //nums_per_page: 6,//每页显示文章数
+  //admin_nums_per_page: 16,//后台每页显示文章数
+  //
+  //admin_title: "FinalMe AdminPanel",//后台名
+  //server_start_time: "2015/6/18"//服务器购入时间
 };
